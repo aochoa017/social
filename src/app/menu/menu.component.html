@@ -1,3 +1,58 @@
-<p>
-  menu works!
-</p>
+<header>
+  <h1>
+    {{title}}
+  </h1>
+  <div id="slide-out" class="side-nav fixed">
+    <div class="row">
+      <div class="col s12">
+        <div class="logo">
+          <a href="#">inedi Social</a>
+        </div>
+        <ul>
+          <li>
+            <div class="userView">
+              <div class="photo">
+                <a href="#!user"><img class="" src="assets/images/myfoto.jpg"></a>
+              </div>
+              <div class="info">
+                <ul class="collapsible" data-collapsible="accordion">
+                  <li>
+                    <div class="collapsible-header" (click)="onClickCollapsible($event)">Aitor Ochoa Ramos <i class="material-icons rotate">arrow_drop_down</i></div>
+                    <div class="collapsible-body">
+                      <div class="collection">
+                        <a href="#!" class="collection-item">Perfil</a>
+                        <a href="#!" class="collection-item active">Editar perfil</a>
+                        <a href="#!" class="collection-item">Ajustes</a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a>
+          </li>
+          <li>
+            <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header" (click)="onClickCollapsible($event)">
+                  <i class="material-icons left">cloud</i> Cursos <i class="material-icons rotate">arrow_drop_down</i>
+                </div>
+                <div class="collapsible-body">
+                  <div class="collection">
+                    <a href="#!" class="collection-item">Perfil</a>
+                    <a href="#!" class="collection-item active">Editar perfil</a>
+                    <a href="#!" class="collection-item">Ajustes</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar-background" style="background-image: url(/assets/images/menu-side.jpg);"></div>
+  </div>
+  <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a>
+</header>
