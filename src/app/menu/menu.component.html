@@ -14,7 +14,10 @@
               <div class="info">
                 <ul class="collapsible" data-collapsible="accordion">
                   <li>
-                    <div class="collapsible-header" (click)="onClickCollapsible($event)">Aitor Ochoa Ramos <i class="material-icons rotate">arrow_drop_down</i></div>
+                    <div class="collapsible-header" (click)="onClickCollapsible($event)">
+                      <div class="title">{{userName}} {{userSurname}}</div>
+                      <i class="material-icons rotate">arrow_drop_down</i>
+                    </div>
                     <div class="collapsible-body">
                       <div class="collection">
                         <a href="#!" class="collection-item">Perfil</a>

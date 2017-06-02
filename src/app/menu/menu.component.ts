@@ -8,7 +8,9 @@ declare var jQuery: any;
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  title = 'app works!';
+
+  userName: String = localStorage.getItem("userName");
+  userSurname: String = localStorage.getItem("userSurname");
 
   isCollapsibleOpen = false;
 

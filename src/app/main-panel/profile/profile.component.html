@@ -1,0 +1,85 @@
+<div class="content-page">
+  <div class="row">
+    <div class="col s12 m8">
+      <div class="box">
+        <div class="header">
+          <h2 class="title">Editar perfil</h2>
+        </div>
+        <div class="content">
+          <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Placeholder" id="name" name="name" type="text" class="validate" [(ngModel)]="profile.name">
+                <label for="name">Nombre</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Placeholder" id="surname" name="surname" type="text" class="validate" [(ngModel)]="profile.surname">
+                <label for="surname">Apellidos</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Placeholder" id="adress" name="adress" type="text" class="validate" [(ngModel)]="profile.adress">
+                <label for="adress">Dirección</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4">
+                <input placeholder="Placeholder" id="city" name="city" type="text" class="validate" [(ngModel)]="profile.city">
+                <label for="city">Ciudad</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="Placeholder" id="country" name="country" type="text" class="validate" [(ngModel)]="profile.country">
+                <label for="country">País</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="Placeholder" id="zipCode" name="zipCode" type="text" class="validate" [(ngModel)]="profile.zipCode">
+                <label for="zipCode">Código postal</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Placeholder" id="email" name="email" type="email" class="validate" [(ngModel)]="profile.email" required>
+                <label for="email">Email</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Placeholder" id="phone" name="phone" type="text" class="validate" [(ngModel)]="profile.phone">
+                <label for="phone">Teléfono</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="biography" name="biography" class="materialize-textarea">{{profile.biography}}</textarea>
+                <label for="biography">Biografía</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <button class="btn waves-effect waves-light" [disabled]="!profileForm.form.valid || profileForm.form.pristine" type="submit">Guardar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m4">
+      <div class="box">
+        <div class="image">
+          <img class="responsive-img" src="https://img.grouponcdn.com/seocms/4RATBJKEKhsDyRmXnyiD2svdxo2r/summer-madrid-groupon_jpg-1024x623" alt="">
+        </div>
+        <div class="content">
+          <div class="photo-author">
+            <a href="#!user"><img class="avatar" src="assets/images/myfoto.jpg"></a>
+            <h2 class="title">
+              {{profile.name}} {{profile.surname}}
+              <small>{{profile.user}}</small>
+            </h2>
+          </div>
+          <blockquote>{{profile.biography}}</blockquote>
+          <hr>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

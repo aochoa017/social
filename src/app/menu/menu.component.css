@@ -59,9 +59,18 @@ header .collapsible > li.active{
 header .collapsible-header{
   color: #ffffff;
 }
+header .collapsible-header .title{
+  line-height: 1;
+  display: inline-block;
+  width: calc(100% - 30px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 header .collapsible-header .material-icons.rotate{
   /*float: right;*/
   margin-right: 0;
+  line-height: 3rem;
 }
 header .side-nav li>a{
   padding: 0 18px;

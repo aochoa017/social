@@ -10,6 +10,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
 
+    // Deleted. Only with test
+    localStorage.setItem("user", "pris");
+    localStorage.setItem("userId", "16");
+    localStorage.setItem("userName", "Priscila");
+    localStorage.setItem("userSurname", "Frugoni Backhaustren");
   }
 
 }

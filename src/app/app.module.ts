@@ -7,20 +7,24 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { MainPanelComponent } from './main-panel/main-panel.component';
 import { NavComponent } from './main-panel/nav/nav.component';
+import { ProfileComponent } from './main-panel/profile/profile.component';
+
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     MainPanelComponent,
-    NavComponent
+    NavComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
