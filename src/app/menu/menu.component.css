@@ -43,6 +43,9 @@
      border: 4px solid rgba(255, 255, 255, 0.3);
     margin: 0 auto;
 }
+.userView .photo a{
+  padding: 0;
+}
 .userView .photo img{
   width: 100%;
 }
