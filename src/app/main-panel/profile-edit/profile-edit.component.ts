@@ -7,11 +7,11 @@ import { Labels } from '../../constants/labels';
 import { ProfileService } from '../../services/profile.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-profile-edit',
+  templateUrl: './profile-edit.component.html',
+  styleUrls: ['./profile-edit.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileEditComponent implements OnInit {
 
   labels: Labels = new Labels();
 
@@ -38,11 +38,11 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.findProfile( this.profile.user );
+    this.getProfile( localStorage.getItem("userId") );
   }
 
-  findProfile( user ) {
-    this._serviceProfile.findProfile(user)
+  getProfile( id ) {
+    this._serviceProfile.getProfile(id)
                      .subscribe(
                        res => {
                          this.profile = res;
@@ -51,6 +51,22 @@ export class ProfileComponent implements OnInit {
                          console.log(res);
                        },
                        error =>  this.errorMsg = <any>error);
+  }
+
+  putProfile(id) {
+    this._serviceProfile.putProfile(id, this.profile)
+                     .subscribe(
+                       res => {
+                         console.log(res);
+                       },
+                       error =>  this.errorMsg = <any>error);
+  }
+
+  submitted = false;
+  onSubmit() {
+    this.submitted = true;
+    console.log( this.profile );
+    this.putProfile( localStorage.getItem("userId") );
   }
 
 }

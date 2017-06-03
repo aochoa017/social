@@ -14,8 +14,14 @@ export class ProfileService {
 
   constructor( private http: Http ){}
 
-  getProfile(id: number): Observable<Profile[]> {
+  getProfile(id: number): Observable<Profile> {
     return this.http.get(this.apiUrl + '/' + id)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  findProfile(user): Observable<Profile> {
+    return this.http.get(this.apiUrl + '/find/' + user)
                     .map(this.extractData)
                     .catch(this.handleError);
   }

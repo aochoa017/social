@@ -1,0 +1,15 @@
+.card-panel {
+  color: #ffffff;
+  padding: 14px;
+}
+.card-panel ul {
+  margin: 0;
+}
+.card-panel ul li {
+  line-height: 2;
+}
+.card-panel .material-icons{
+  float: left;
+  margin-right: 8px;
+  margin-bottom: 0;
+}

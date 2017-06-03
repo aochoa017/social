@@ -90,6 +90,7 @@ header .collapsible-body .collection .collection-item{
 header .collapsible-body .collection .collection-item.active{
   color: #ffffff;
   font-weight: 400;
+  background-color: rgba(0,0,0,0.05);
 }
 
 .rotate{

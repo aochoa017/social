@@ -36,6 +36,7 @@ export class Profile extends User {
 
   constructor(){
     super();
+    // this.setUser("elquesea");
     this.name = "Aitor";
     this.surname = "";
     this.adress = "";

@@ -1,8 +1,10 @@
 export class User {
 
-  // public id: String;
+  id: String;
 
-  // public user: String;
+  user: String;
+
+  password: String;
 
   /**
    * Construct
@@ -11,12 +13,21 @@ export class User {
   //   // this.id = id;
   // }
 
-  id: String = "43";
-  user: String = "user43";
+  // id: String = "43";
+  // user: String = "user43";
 
   constructor(){
-    this.id = "23";
-    this.user = "user23";
+    this.id = "";
+    this.user = "";
+    this.password = "";
+  }
+
+  public getUser(){
+    return this.user;
+  }
+
+  public setUser(user){
+    this.user = user;
   }
 
 }

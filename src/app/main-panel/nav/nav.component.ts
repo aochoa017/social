@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
+import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
+
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +13,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  pageTitle: String;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private _serviceUser: UserService
+  ) {}
 
   ngOnInit() {
+    // const myData = this.route.snapshot.children;
+    // console.log( myData );
+    this.pageTitle = this.route.snapshot.data['title'];
+  }
+
+  onClickLogout(){
+    console.log("onClickLogout");
+    this._serviceUser.logout();
   }
 
 }

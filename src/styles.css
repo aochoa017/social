@@ -29,6 +29,17 @@ h6, .h6 {
   text-transform: uppercase;
 }
 
+
+.btn, .btn-large {
+  background-color: #23CCEF;
+}
+
+
+.title-page{
+  font-weight: 400;
+  font-size: 20px;
+}
+
 .content-page{
   padding: 40px 10px;
   background-color: #F5F5F5;
