@@ -20,6 +20,8 @@ export class Profile extends User {
 
    biography: String;
 
+   avatar: String;
+
   // constructor(
   //   public id: String,
   //   public name: String,
@@ -46,6 +48,7 @@ export class Profile extends User {
     this.email = "";
     this.phone = "";
     this.biography = "";
+    this.avatar = "";
   }
 
 }

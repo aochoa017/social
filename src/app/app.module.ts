@@ -19,6 +19,8 @@ import { MainComponent } from './main/main.component';
 import { LoginNavComponent } from './login/login-nav/login-nav.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 
+import { NgUploaderModule } from 'ngx-uploader';
+
 const appRoutes: Routes = [
   {
     path: 'login',
@@ -81,7 +83,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgUploaderModule
   ],
   providers: [ProfileService,UserService,LoginService],
   bootstrap: [AppComponent]
