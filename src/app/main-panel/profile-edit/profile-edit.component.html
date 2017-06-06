@@ -69,7 +69,11 @@
         </div>
         <div class="content">
           <div class="photo-author">
-            <a href="#!user"><img class="avatar" [src]="['http://localhost:8888/api/assets/user/avatar/'+profile.avatar]"></a>
+            <a (click)="openModal()">
+              <span class="avatarHover">
+                <img class="avatar" [src]="['http://localhost:8888/api/assets/user/avatar/'+profile.avatar]">
+              </span>
+            </a>
             <h2 class="title">
               {{profile.name}} {{profile.surname}}
               <small>{{profile.user}}</small>
@@ -77,20 +81,27 @@
           </div>
           <blockquote>{{profile.biography}}</blockquote>
           <hr>
-          <label class="upload-button">
-            <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
-            or choose file(s)
-          </label>
-
-          <button type="button" class="start-upload-btn" (click)="startUpload()">
-            Start Upload
-          </button>
-
-          <button type="button" class="start-upload-btn" (click)="borrar()">
-            CONSOLE: files
-          </button>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="modalEditAvatar" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+  <div class="modal-content">
+    <h4>Subir avatar</h4>
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>Seleccionar</span>
+        <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="startUpload()">Actualizar</a>
   </div>
 </div>

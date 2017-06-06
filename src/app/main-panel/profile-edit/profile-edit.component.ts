@@ -1,11 +1,14 @@
 import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
+import {MaterializeAction} from 'angular2-materialize';
 
 import { Profile } from '../../entities/profile';
 import { Labels } from '../../constants/labels';
 
 import { ProfileService } from '../../services/profile.service';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'app-profile-edit',
@@ -45,6 +48,14 @@ export class ProfileEditComponent implements OnInit {
 
   ngOnInit() {
     this.getProfile( localStorage.getItem("userId") );
+  }
+
+  modalActions = new EventEmitter<string|MaterializeAction>();
+  openModal() {
+    this.modalActions.emit({action:"modal",params:['open']});
+  }
+  closeModal() {
+    this.modalActions.emit({action:"modal",params:['close']});
   }
 
   getProfile( id ) {

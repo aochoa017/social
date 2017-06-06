@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { MaterializeModule } from "angular2-materialize";
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -84,7 +85,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    NgUploaderModule
+    NgUploaderModule,
+    MaterializeModule
   ],
   providers: [ProfileService,UserService,LoginService],
   bootstrap: [AppComponent]
