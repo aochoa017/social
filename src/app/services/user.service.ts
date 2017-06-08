@@ -30,7 +30,7 @@ export class UserService {
   }
 
   login(user){
-    console.log(user.user);
+    // console.log(user.user);
     var isUserLog = this.getUser(user.user).subscribe( res => {
       // console.log(res);
       if ( res.user == user.user && res.password === user.password ){//Md5.hashStr(user.password) ){
@@ -39,10 +39,10 @@ export class UserService {
         // localStorage.setItem("userName", String(res.name) );
         // localStorage.setItem("userSurname", String(res.surname) );
         this._router.navigate(['profile']);
-        console.log('true');
+        // console.log('true');
         return true;
       }
-      console.log('false');
+      // console.log('false');
       return false;
     } );
     return isUserLog;

@@ -9,13 +9,13 @@
           <li>
             <div class="userView">
               <div class="photo">
-                <a href="#!user"><img class="" src="assets/images/myfoto.jpg"></a>
+                <a href="#!user"><img class="" [src]="['http://localhost:8888/api/assets/user/avatar/'+profile.avatar]"></a>
               </div>
               <div class="info">
                 <ul class="collapsible" data-collapsible="accordion">
                   <li>
                     <div class="collapsible-header" (click)="onClickCollapsible($event)">
-                      <div class="title">{{userName}} {{userSurname}}</div>
+                      <div class="title">{{profile.name}} {{profile.surname}}</div>
                       <i class="material-icons rotate">arrow_drop_down</i>
                     </div>
                     <div class="collapsible-body">

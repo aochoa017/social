@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Profile } from '../entities/profile';
+import { ProfileService } from '../services/profile.service';
 
 declare var jQuery: any;
 
@@ -9,24 +12,36 @@ declare var jQuery: any;
 })
 export class MenuComponent implements OnInit {
 
-  user: String;
-  userName: String;
-  userSurname: String;
+  myUserId: String;
+  myUser: String;
+  myUserName: String;
+  myUserSurname: String;
 
   isCollapsibleOpen = false;
 
+
+  profile = new Profile;
+  errorMsg = '';
+
   menu = {};
+
+  constructor( private _serviceProfile:ProfileService ) {
+
+    console.log("constructor menu");
+    this.myUserId = localStorage.getItem("userId");
+    this.myUser = localStorage.getItem("user");
+    this.myUserName = localStorage.getItem("userName");
+    this.myUserSurname = localStorage.getItem("userSurname");
+    this.getProfile(this.myUserId);
+
+  }
 
   ngOnInit(){
 
-    this.user = localStorage.getItem("user");
-    this.userName = localStorage.getItem("userName");
-    this.userSurname = localStorage.getItem("userSurname");
+    console.log("ngOnInit main");
 
-    // this.menu.push();
-    // this.menu.push();
     this.menu = {
-      "profile": "/profile/" + this.user,
+      "profile": "/profile/" + this.myUser,
       "editProfile": "/profile/me/edit"
     }
 
@@ -55,6 +70,16 @@ export class MenuComponent implements OnInit {
       thisIcon.removeClass("rotate-180");
     }
 
+  }
+
+  getProfile( id ) {
+    this._serviceProfile.getProfile(id)
+                     .subscribe(
+                       res => {
+                         this.profile = res;
+                        //  console.log(res);
+                       },
+                       error =>  this.errorMsg = <any>error);
   }
 
 }

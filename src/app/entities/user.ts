@@ -9,13 +9,6 @@ export class User {
   /**
    * Construct
    */
-  // constructor( public id: String = "16" ) {
-  //   // this.id = id;
-  // }
-
-  // id: String = "43";
-  // user: String = "user43";
-
   constructor(){
     this.id = "";
     this.user = "";

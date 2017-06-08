@@ -11,19 +11,30 @@ import { Profile } from '../entities/profile';
 export class ProfileService {
 
   private apiUrl = 'http://localhost:8888/api/profile';  // URL to web API
+  // private myProfile: Profile;
 
   constructor( private http: Http ){}
 
   getProfile(id: number): Observable<Profile> {
     return this.http.get(this.apiUrl + '/' + id)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+    .map(this.extractData)
+    .catch(this.handleError);
   }
+
+  /*
+  setMyProfile(myProfile) {
+    this.myProfile = myProfile;
+  }
+  getMyProfile() {
+    console.log(this.myProfile);
+    return this.myProfile;
+  }
+  */
 
   findProfile(user): Observable<Profile> {
     return this.http.get(this.apiUrl + '/find/' + user)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+    .map(this.extractData)
+    .catch(this.handleError);
   }
 
   putProfile(id: number, body: Object): Observable<Profile> {
@@ -33,8 +44,8 @@ export class ProfileService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.put(this.apiUrl + '/' + id, data, options)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+    .map(this.extractData)
+    .catch(this.handleError);
   }
 
   private extractData(res: Response) {

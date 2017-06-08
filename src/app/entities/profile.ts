@@ -22,24 +22,10 @@ export class Profile extends User {
 
    avatar: String;
 
-  // constructor(
-  //   public id: String,
-  //   public name: String,
-  //   public adress: String,
-  //   public city: String,
-  //   public country: String,
-  //   public zipCode: String,
-  //   public email: String,
-  //   public phone: String,
-  //   public biography: String ) {
-  //   super(id);
-  //   // this.name = name;
-  // }
-
   constructor(){
     super();
     // this.setUser("elquesea");
-    this.name = "Aitor";
+    this.name = "";
     this.surname = "";
     this.adress = "";
     this.city = "";
@@ -49,6 +35,14 @@ export class Profile extends User {
     this.phone = "";
     this.biography = "";
     this.avatar = "";
+  }
+
+  public getName() {
+    return this.name;
+  }
+
+  public setName(name) {
+    this.name = name;
   }
 
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 import {MaterializeAction} from 'angular2-materialize';
 
@@ -21,25 +21,19 @@ export class ProfileEditComponent implements OnInit {
 
   boxTitle = this.labels.label["EDIT_PROFILE"];
 
-  // name: String;
-  // surname: String;
-  // adress: String;
-  // city: String;
-  // country: String;
-  // zipCode: String;
-  // email: String;
-  // phone: String;
-  // biography: String;
-
-  // profile: Profile[] = [];
+  myUserId: String;
   profile = new Profile;
   errorMsg = '';
 
-  constructor( private _serviceProfile:ProfileService, private activatedRoute_: ActivatedRoute, private cdRef:ChangeDetectorRef ) {
-    activatedRoute_.params.subscribe( params => {
-      this.profile.setUser( params['user'] );
-    } );
+  constructor( private _serviceProfile:ProfileService ) {
 
+    console.log("constructor profile-edit");
+    this.myUserId = localStorage.getItem("userId");
+    this.getProfile(this.myUserId);
+
+    // activatedRoute_.params.subscribe( params => {
+    //   // this.profile.setUser( params['user'] );
+    // } );
 
     this.files = []; // local uploading files array
     this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
@@ -47,7 +41,7 @@ export class ProfileEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProfile( localStorage.getItem("userId") );
+    console.log("ngOninit profile-edit");
   }
 
   modalActions = new EventEmitter<string|MaterializeAction>();
@@ -63,9 +57,6 @@ export class ProfileEditComponent implements OnInit {
                      .subscribe(
                        res => {
                          this.profile = res;
-                        //  console.log("==========");
-                        //  console.log("==========");
-                         console.log(res);
                        },
                        error =>  this.errorMsg = <any>error);
   }
@@ -83,7 +74,7 @@ export class ProfileEditComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     console.log( this.profile );
-    this.putProfile( localStorage.getItem("userId") );
+    this.putProfile( this.myUserId );
   }
 
 
@@ -145,7 +136,7 @@ export class ProfileEditComponent implements OnInit {
   startUpload(): void {  // manually start uploading
     const event: UploadInput = {
       type: 'uploadAll',
-      url: 'http://localhost:8888/api/profile/avatar/' + localStorage.getItem("userId"),
+      url: 'http://localhost:8888/api/profile/avatar/' + this.myUserId,
       method: 'POST',
       fieldName: 'avatar',
       data: { foo: 'bar' },
