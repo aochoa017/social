@@ -21,6 +21,7 @@ import { LoginNavComponent } from './login/login-nav/login-nav.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 
 import { NgUploaderModule } from 'ngx-uploader';
+import { DashboardComponent } from './main-panel/dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   {
@@ -53,7 +54,18 @@ const appRoutes: Routes = [
       }
     ]
   },
-  { path: 'dashboard', component: MainComponent },
+  {
+    path: 'dashboard',
+    component: MainComponent,
+    data: { title: "Escritorio" },
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: DashboardComponent
+      }
+    ]
+  },
   // { path: 'hero/:id',      component: HeroDetailComponent },
   // {
   //   path: 'heroes',
@@ -78,7 +90,8 @@ const appRoutes: Routes = [
     LoginComponent,
     MainComponent,
     LoginNavComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
