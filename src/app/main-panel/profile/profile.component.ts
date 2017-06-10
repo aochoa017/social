@@ -17,28 +17,16 @@ export class ProfileComponent implements OnInit {
 
   boxTitle = this.labels.label["EDIT_PROFILE"];
 
-  // name: String;
-  // surname: String;
-  // adress: String;
-  // city: String;
-  // country: String;
-  // zipCode: String;
-  // email: String;
-  // phone: String;
-  // biography: String;
-
-  // profile: Profile[] = [];
   profile = new Profile;
   errorMsg = '';
 
   constructor( private _serviceProfile:ProfileService, private activatedRoute_: ActivatedRoute ) {
     activatedRoute_.params.subscribe( params => {
-      this.profile.setUser( params['user'] );
+      this.findProfile( params['user'] );
     } );
   }
 
   ngOnInit() {
-    this.findProfile( this.profile.user );
   }
 
   findProfile( user ) {
@@ -46,9 +34,6 @@ export class ProfileComponent implements OnInit {
                      .subscribe(
                        res => {
                          this.profile = res;
-                        //  console.log("==========");
-                        //  console.log("==========");
-                         console.log(res);
                        },
                        error =>  this.errorMsg = <any>error);
   }
