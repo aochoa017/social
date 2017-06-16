@@ -21,6 +21,12 @@ export class ProfileService {
     .catch(this.handleError);
   }
 
+  getAllProfiles(): Observable<Profile> {
+    return this.http.get(this.apiUrl + 's')
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
+
   /*
   setMyProfile(myProfile) {
     this.myProfile = myProfile;

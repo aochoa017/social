@@ -4,6 +4,12 @@
       <p>
         dashboard works!
       </p>
+      <ul>
+        <li *ngFor="let profile of profiles">
+          {{profile.user}}
+          <img [src]="['http://localhost:8888/api/assets/user/avatar/' + profile.avatar]"
+        </li>
+      </ul>
     </div>
   </div>
 </div>
