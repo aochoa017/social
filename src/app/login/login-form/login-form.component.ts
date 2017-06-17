@@ -36,7 +36,7 @@ export class LoginFormComponent implements OnInit {
           console.log("SUCCESS");
           console.log("expira en " + res.token.expires_in/this.daysToSeconds);
           // Save session i cookies
-          Cookie.set('access_token', res.token.access_token, res.token.expires_in/this.daysToSeconds);
+          Cookie.set('access_token', res.token.access_token);//, res.token.expires_in/this.daysToSeconds);
           Cookie.set('scope', res.token.scope);
           Cookie.set('token_type', res.token.token_type);
           console.log(Cookie.get('access_token'));
