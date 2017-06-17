@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
                      .subscribe(
                        res => {
                          this.profiles = res;
+                         console.log(res);
                        },
                        error =>  this.errorMsg = <any>error);
   }

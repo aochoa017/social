@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -23,8 +24,10 @@ export class ProfileService {
 
   getAllProfiles(): Observable<Profile> {
     let data = JSON.stringify([]);
+    let token_type = Cookie.get('token_type');;
+    let access_token = Cookie.get('access_token');;
     let headers = new Headers();
-    headers.append( 'authorization', 'Bearer 6433705f0af3d8e6df7dc432bf0ae47320af3045' );
+    headers.append( 'authorization', token_type + " " + access_token );
     let options = new RequestOptions({ headers: headers });
     return this.http.get(this.apiUrl + 's', options)
     .map(this.extractData)

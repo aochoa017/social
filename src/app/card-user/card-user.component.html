@@ -1,0 +1,63 @@
+<div class="card horizontal">
+  <div class="card-image">
+    <img *ngIf="profile.avatar" class="avatar" [src]="['http://localhost:8888/api/assets/user/avatar/'+profile.avatar]">
+    <img *ngIf="!profile.avatar" class="avatar" [src]="[avatarNotFoundWoman]">
+  </div>
+  <div class="card-stacked">
+    <div class="card-content">
+      <h2 class="title">
+        {{profile.name}} {{profile.surname}}
+        <small>{{profile.user}}</small>
+      </h2>
+      <p>{{profile.city}} {{profile.country}}</p>
+    </div>
+    <div class="card-action">
+      <a href="#">Mensaje</a>
+      <a [routerLink]="['/profile/'+profile.user]" routerLinkActive="active" class="collection-item">Perfil</a>
+      <a href="#" class="add-user-link">Añadir</a>
+    </div>
+  </div>
+</div>
+<div class="box hide">
+  <div class="image">
+    <img class="responsive-img" src="https://img.grouponcdn.com/seocms/4RATBJKEKhsDyRmXnyiD2svdxo2r/summer-madrid-groupon_jpg-1024x623" alt="">
+  </div>
+  <div class="content">
+    <div class="photo-author">
+      <a href="#!user"><img class="avatar" [src]="['http://localhost:8888/api/assets/user/avatar/'+profile.avatar]"></a>
+      <h2 class="title">
+        {{profile.name}} {{profile.surname}}
+        <small>{{profile.user}}</small>
+      </h2>
+    </div>
+    <table>
+      <!-- <thead>
+        <tr>
+          <th>Name</th>
+          <th>Item Name</th>
+          <th>Item Price</th>
+        </tr>
+      </thead> -->
+      <tbody>
+        <tr>
+          <td>Email</td>
+          <td>{{profile.email}}</td>
+        </tr>
+        <tr>
+          <td>Teléfono</td>
+          <td>{{profile.phone}}</td>
+        </tr>
+        <tr>
+          <td>Ciudad</td>
+          <td>{{profile.city}}</td>
+        </tr>
+        <tr>
+          <td>País</td>
+          <td>{{profile.country}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <blockquote>{{profile.biography}}</blockquote>
+    <hr>
+  </div>
+</div>

@@ -22,6 +22,7 @@ import { LoginFormComponent } from './login/login-form/login-form.component';
 
 import { NgUploaderModule } from 'ngx-uploader';
 import { DashboardComponent } from './main-panel/dashboard/dashboard.component';
+import { CardUserComponent } from './card-user/card-user.component';
 
 const appRoutes: Routes = [
   {
@@ -91,7 +92,8 @@ const appRoutes: Routes = [
     MainComponent,
     LoginNavComponent,
     LoginFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    CardUserComponent
   ],
   imports: [
     BrowserModule,
