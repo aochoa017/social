@@ -22,7 +22,11 @@ export class ProfileService {
   }
 
   getAllProfiles(): Observable<Profile> {
-    return this.http.get(this.apiUrl + 's')
+    let data = JSON.stringify([]);
+    let headers = new Headers();
+    headers.append( 'authorization', 'Bearer 6433705f0af3d8e6df7dc432bf0ae47320af3045' );
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(this.apiUrl + 's', options)
     .map(this.extractData)
     .catch(this.handleError);
   }
