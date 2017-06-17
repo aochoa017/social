@@ -28,7 +28,7 @@ export class UserService {
                     .map(this.extractData)
                     .catch(this.handleError);
   }
-
+/*
   login(user){
     // console.log(user.user);
     var isUserLog = this.getUser(user.user).subscribe( res => {
@@ -47,7 +47,7 @@ export class UserService {
     } );
     return isUserLog;
   }
-
+*/
   checkCredentials(){
     if (localStorage.getItem("user") === null){
         this._router.navigate(['login']);

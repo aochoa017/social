@@ -1,50 +1,29 @@
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-// import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable()
 export class LoginService {
 
-  private apiUrl = 'http://localhost:8888/api/log';  // URL to web API
-  // private user: String;
+  private apiUrl = 'http://localhost:8888/api/login';  // URL to web API
 
   constructor( private _router: Router, private http: Http ){}
 
-  // getUserId(id: number): Observable<User[]> {
-  //   return this.http.get(this.apiUrl + '/' + id)
-  //                   .map(this.extractData)
-  //                   .catch(this.handleError);
-  // }
-  //
-  // getUser(user: String): Observable<User> {
-  //   return this.http.get(this.apiUrl + '/find/' + user)
-  //                   .map(this.extractData)
-  //                   .catch(this.handleError);
-  // }
-
-  // login(user){
-  //   console.log(user.user);
-  //   var isUserLog = this.getUser(user.user).subscribe( res => {
-  //     // console.log(res);
-  //     if ( res.user == user.user && res.password === user.password ){//Md5.hashStr(user.password) ){
-  //       localStorage.setItem("user", String(res.user) );
-  //       localStorage.setItem("userId", String(res.id) );
-  //       // localStorage.setItem("userName", String(res.name) );
-  //       // localStorage.setItem("userSurname", String(res.surname) );
-  //       this._router.navigate(['profile']);
-  //       console.log('true');
-  //       return true;
-  //     }
-  //     console.log('false');
-  //     return false;
-  //   } );
-  //   return isUserLog;
-  // }
+  postLogin(body: Object): Observable<any> {
+    let data = JSON.stringify(body); // Stringify payload
+    console.log(body);
+    console.log(data);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.apiUrl, data, options)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
 
   checkCredentials(){
     if (localStorage.getItem("user") === null){
