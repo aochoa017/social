@@ -48,20 +48,6 @@ export class UserService {
     return isUserLog;
   }
 */
-  checkCredentials(){
-    if (localStorage.getItem("user") === null){
-        this._router.navigate(['login']);
-    } else if ( this._router.url == 'login' ){
-      this._router.navigate(['dashboard']);
-    }
-  }
-
-  logout() {
-    localStorage.removeItem("user");
-    localStorage.removeItem("userId");
-    this._router.navigate(['login']);
-    return true;
-  }
 
   // putProfile(id: number, body: Object): Observable<Profile> {
   //   let data = JSON.stringify(body); // Stringify payload

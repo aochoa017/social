@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 
-import { UserService } from '../../services/user.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-nav',
@@ -18,7 +18,7 @@ export class NavComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private _serviceUser: UserService
+    private _serviceLogin: LoginService
   ) {}
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class NavComponent implements OnInit {
 
   onClickLogout(){
     console.log("onClickLogout");
-    this._serviceUser.logout();
+    this._serviceLogin.logout();
   }
 
 }

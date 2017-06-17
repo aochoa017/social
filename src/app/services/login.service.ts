@@ -26,11 +26,20 @@ export class LoginService {
   }
 
   checkCredentials(){
-    if (localStorage.getItem("user") === null){
+    var access_token = Cookie.get('access_token');
+    if (access_token === null){
         this._router.navigate(['login']);
-    } else{
-      // this._router.navigate(['profile']);
+    } else if ( this._router.url == 'login' ){
+      this._router.navigate(['dashboard']);
     }
+  }
+
+  logout() {
+    Cookie.deleteAll();
+    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+    this._router.navigate(['login']);
+    return true;
   }
 
   private extractData(res: Response) {
