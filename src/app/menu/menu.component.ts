@@ -41,10 +41,11 @@ export class MenuComponent implements OnInit {
     console.log("ngOnInit menu");
 
     this.menu = {
+      "dashboard": "/dashboard",
       "profile": "/profile/" + this.myUser,
       "editProfile": "/profile/me/edit"
     }
-    
+
     jQuery(".button-collapse").sideNav({
       menuWidth: 300, // Default is 300
       edge: 'left', // Choose the horizontal origin
