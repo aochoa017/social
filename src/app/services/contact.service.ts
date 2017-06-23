@@ -12,7 +12,7 @@ export class ContactService {
 
   constructor( private http: Http ){}
 
-  getContact(id: number): Observable<any> {
+  getContacts(id: String): Observable<any> {
     return this.http.get(this.apiUrl + '/' + id)
     .map(this.extractData)
     .catch(this.handleError);

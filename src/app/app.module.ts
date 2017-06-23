@@ -12,6 +12,7 @@ import { NavComponent } from './main-panel/nav/nav.component';
 import { ProfileComponent } from './main-panel/profile/profile.component';
 import { ProfileEditComponent } from './main-panel/profile-edit/profile-edit.component';
 
+import { ContactService } from './services/contact.service';
 import { LoginService } from './services/login.service';
 import { ProfileService } from './services/profile.service';
 import { UserService } from './services/user.service';
@@ -103,7 +104,7 @@ const appRoutes: Routes = [
     NgUploaderModule,
     MaterializeModule
   ],
-  providers: [ProfileService,UserService,LoginService],
+  providers: [ProfileService,UserService,LoginService,ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
