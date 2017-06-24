@@ -27,7 +27,6 @@ export class MenuComponent implements OnInit {
 
   constructor( private _serviceProfile:ProfileService ) {
 
-    console.log("constructor menu");
     this.myUserId = localStorage.getItem("userId");
     this.myUser = localStorage.getItem("user");
     this.myUserName = localStorage.getItem("userName");
@@ -37,8 +36,6 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(){
-
-    console.log("ngOnInit menu");
 
     this.menu = {
       "dashboard": "/dashboard",
@@ -58,13 +55,11 @@ export class MenuComponent implements OnInit {
   }
 
   onClickCollapsible(event: any){
-    console.log("onClickCollapsible");
     this.isCollapsibleOpen = !this.isCollapsibleOpen;
     var thisIcon = jQuery(event.target);
     if( !thisIcon.hasClass("rotate") ){
       thisIcon = thisIcon.find("i.rotate");
     }
-    console.log(thisIcon);
     if( this.isCollapsibleOpen ){
       thisIcon.addClass("rotate-180");
     } else {
@@ -78,7 +73,6 @@ export class MenuComponent implements OnInit {
                      .subscribe(
                        res => {
                          this.profile = res;
-                        //  console.log(res);
                        },
                        error =>  this.errorMsg = <any>error);
   }

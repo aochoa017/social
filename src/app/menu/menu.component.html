@@ -9,7 +9,7 @@
           <li>
             <div class="userView">
               <div class="photo">
-                <a href="#!user"><img class="" [src]="['http://localhost:8888/api/assets/user/avatar/'+profile.avatar]"></a>
+                <a [routerLink]="menu.profile"><img class="" [src]="['http://localhost:8888/api/assets/user/avatar/'+profile.avatar]"></a>
               </div>
               <div class="info">
                 <ul class="collapsible" data-collapsible="accordion">
@@ -22,7 +22,7 @@
                       <div class="collection">
                         <a [routerLink]="menu.profile" routerLinkActive="active" class="collection-item">Perfil</a>
                         <a [routerLink]="menu.editProfile" routerLinkActive="active" class="collection-item">Editar perfil</a>
-                        <a href="#!" class="collection-item">Ajustes</a>
+                        <!-- <a href="#!" class="collection-item">Ajustes</a> -->
                       </div>
                     </div>
                   </li>
@@ -31,7 +31,7 @@
             </div>
           </li>
           <li>
-            <a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a>
+            <!-- <a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a> -->
           </li>
           <li>
             <ul class="collapsible" data-collapsible="accordion">
@@ -41,9 +41,9 @@
                 </div>
                 <div class="collapsible-body">
                   <div class="collection">
-                    <a [routerLink]="menu.dashboard" class="collection-item">Escritorio</a>
-                    <a [routerLink]="menu.contacts" class="collection-item">Contactos</a>
-                    <a href="#!" class="collection-item">Ajustes</a>
+                    <a [routerLink]="menu.dashboard" routerLinkActive="active" class="collection-item">Escritorio</a>
+                    <a [routerLink]="menu.contacts" routerLinkActive="active" class="collection-item">Contactos</a>
+                    <!-- <a href="#!" class="collection-item">Ajustes</a> -->
                   </div>
                 </div>
               </li>
