@@ -42,6 +42,7 @@ export class MenuComponent implements OnInit {
 
     this.menu = {
       "dashboard": "/dashboard",
+      "contacts": "/contacts",
       "profile": "/profile/" + this.myUser,
       "editProfile": "/profile/me/edit"
     }

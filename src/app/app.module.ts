@@ -24,6 +24,7 @@ import { LoginFormComponent } from './login/login-form/login-form.component';
 import { NgUploaderModule } from 'ngx-uploader';
 import { DashboardComponent } from './main-panel/dashboard/dashboard.component';
 import { CardUserComponent } from './card-user/card-user.component';
+import { ContactsComponent } from './main-panel/contacts/contacts.component';
 
 const appRoutes: Routes = [
   {
@@ -68,6 +69,18 @@ const appRoutes: Routes = [
       }
     ]
   },
+  {
+    path: 'contacts',
+    component: MainComponent,
+    data: { title: "Contactos" },
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: ContactsComponent
+      }
+    ]
+  },
   // { path: 'hero/:id',      component: HeroDetailComponent },
   // {
   //   path: 'heroes',
@@ -94,7 +107,8 @@ const appRoutes: Routes = [
     LoginNavComponent,
     LoginFormComponent,
     DashboardComponent,
-    CardUserComponent
+    CardUserComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
