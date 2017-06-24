@@ -15,8 +15,16 @@ export class User {
     this.password = "";
   }
 
+  public getId(){
+    return this.id;
+  }
+
   public getUser(){
     return this.user;
+  }
+
+  public setId(id){
+    this.id = id;
   }
 
   public setUser(user){
