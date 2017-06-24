@@ -4,6 +4,8 @@ import { Profile } from '../../entities/profile';
 import { ProfileService } from '../../services/profile.service';
 import { ContactService } from '../../services/contact.service';
 
+declare var jQuery: any;
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -13,18 +15,24 @@ export class DashboardComponent implements OnInit {
 
   profiles: any;
   myContacts: any;
+  myContactsTotal: number;
   myContactsRequests: any;
+  myContactsRequestsTotal: number;
   myContactsPetitions: any;
+  myContactsPetitionsTotal: number;
+  allUsersTotal: number;
   errorMsg = '';
 
   constructor( private _serviceProfile:ProfileService, private _serviceContact:ContactService ) {
+  }
+
+  ngOnInit() {
     this.getAllProfiles();
     this.getMyContacts();
     this.getContactRequests();
     this.getContactPetitions();
-  }
 
-  ngOnInit() {
+    jQuery('ul.tabs').tabs();
   }
 
   getAllProfiles() {
@@ -32,7 +40,7 @@ export class DashboardComponent implements OnInit {
                      .subscribe(
                        res => {
                          this.profiles = res;
-                         console.log(res);
+                         this.allUsersTotal = this.profiles.length;
                        },
                        error =>  this.errorMsg = <any>error);
   }
@@ -43,6 +51,8 @@ export class DashboardComponent implements OnInit {
                        res => {
                         console.log(res);
                         this.myContacts = res;
+                        console.log(res.length);
+                        this.myContactsTotal = res.length;
                        },
                        error =>  this.errorMsg = <any>error);
   }

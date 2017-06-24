@@ -1,20 +1,28 @@
 <div class="content-page">
     <div class="row">
-      <h4>Mis contactos</h4>
-      <div class="col s12" *ngFor="let item of myContacts">
-        <app-card-user [profileId]="item.id" [type]="'contacts'"></app-card-user>
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a href="#myContacts"><i class="material-icons">group</i>Contactos</a></li>
+          <li class="tab col s3"><a class="active" href="#myRequest"><i class="material-icons">person_add</i> Requests</a></li>
+          <li class="tab col s3 disabled"><a href="#test3">Peticiones</a></li>
+          <li class="tab col s3"><a href="#allUsers"><i class="material-icons">group_add</i>Tod@s</a></li>
+        </ul>
       </div>
-      <h4>Todas mis Requests</h4>
-      <div class="col s12" *ngFor="let item of myContactsRequests">
-        <app-card-user [profileId]="item.id" [type]="'contactsRequests'"></app-card-user>
+      <div id="myContacts">
+        <div class="col s12" *ngFor="let item of myContacts">
+          <app-card-user [profileId]="item.id" [type]="'contacts'"></app-card-user>
+        </div>
       </div>
-      <h4>Todas mis peticiones</h4>
-      <div class="col s12" *ngFor="let item of myContactsPetitions">
-        <app-card-user [profileId]="item.id" [type]="'contactsPetitions'"></app-card-user>
+      <div id="myRequest">
+        <div class="col s12" *ngFor="let item of myContactsRequests">
+          <app-card-user [profileId]="item.id" [type]="'contactsPetitions'"></app-card-user>
+        </div>
       </div>
-      <h4>Todos los perfiles</h4>
-      <div class="col s12" *ngFor="let profile of profiles">
-        <app-card-user [profileId]="profile.id" [type]="'allUsers'"></app-card-user>
+      <div id="test3" class="col s12">Test 3</div>
+      <div id="allUsers">
+        <div class="col s12" *ngFor="let profile of profiles">
+          <app-card-user [profileId]="profile.id" [type]="'allUsers'"></app-card-user>
+        </div>
       </div>
     </div>
 </div>
