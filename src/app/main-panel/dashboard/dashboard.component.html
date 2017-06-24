@@ -1,7 +1,20 @@
 <div class="content-page">
     <div class="row">
+      <h4>Mis contactos</h4>
+      <div class="col s12" *ngFor="let item of myContacts">
+        <app-card-user [profileId]="item.id" [type]="'contacts'"></app-card-user>
+      </div>
+      <h4>Todas mis Requests</h4>
+      <div class="col s12" *ngFor="let item of myContactsRequests">
+        <app-card-user [profileId]="item.id" [type]="'contactsRequests'"></app-card-user>
+      </div>
+      <h4>Todas mis peticiones</h4>
+      <div class="col s12" *ngFor="let item of myContactsPetitions">
+        <app-card-user [profileId]="item.id" [type]="'contactsPetitions'"></app-card-user>
+      </div>
+      <h4>Todos los perfiles</h4>
       <div class="col s12" *ngFor="let profile of profiles">
-        <app-card-user [profile]="profile"></app-card-user>
+        <app-card-user [profileId]="profile.id" [type]="'allUsers'"></app-card-user>
       </div>
     </div>
 </div>

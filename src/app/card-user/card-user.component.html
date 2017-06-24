@@ -14,7 +14,8 @@
     <div class="card-action">
       <a href="#">Mensaje</a>
       <a [routerLink]="['/profile/'+profile.user]" routerLinkActive="active" class="collection-item">Perfil</a>
-      <a href="#" class="add-user-link">Añadir</a>
+      <a *ngIf="type == 'allUsers'" (click)="onClickAddContact($event,profile.id)" class="add-user-link">Añadir</a>
+      <a *ngIf="type == 'contactsRequests'" (click)="onClickAcceptContact($event,profile.id)" class="add-user-link">Acceptar</a>
     </div>
   </div>
 </div>

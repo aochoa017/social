@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { User } from '../entities/user';
+
 @Injectable()
 export class ContactService {
 
@@ -18,19 +20,19 @@ export class ContactService {
     .catch(this.handleError);
   }
 
-  getContactRequests(id: number): Observable<any> {
+  getContactRequests(id: String): Observable<any> {
     return this.http.get(this.apiUrl + '/requests/' + id)
     .map(this.extractData)
     .catch(this.handleError);
   }
 
-  getContactPetitions(id: number): Observable<any> {
+  getContactPetitions(id: String): Observable<User> {
     return this.http.get(this.apiUrl + '/petitions/' + id)
     .map(this.extractData)
     .catch(this.handleError);
   }
 
-  putContact(id: number, body: Object): Observable<any> {
+  putContact(id: String, body: Object): Observable<any> {
     let data = JSON.stringify(body);
     console.log(body);
     console.log(data);
@@ -41,7 +43,7 @@ export class ContactService {
     .catch(this.handleError);
   }
 
-  postContact(id: number, body: Object): Observable<any> {
+  postContact(id: String, body: User): Observable<any> {
     let data = JSON.stringify(body);
     console.log(body);
     console.log(data);
@@ -52,7 +54,7 @@ export class ContactService {
     .catch(this.handleError);
   }
 
-  deleteContact(id: number, body: Object): Observable<any> {
+  deleteContact(id: String, body: Object): Observable<any> {
     let data = JSON.stringify(body);
     console.log(body);
     console.log(data);
