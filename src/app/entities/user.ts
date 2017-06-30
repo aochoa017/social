@@ -23,12 +23,20 @@ export class User {
     return this.user;
   }
 
+  public getPassword(){
+    return this.password;
+  }
+
   public setId(id){
     this.id = id;
   }
 
   public setUser(user){
     this.user = user;
+  }
+
+  public setUPassword(password){
+    this.password = password;
   }
 
 }

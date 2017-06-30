@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 import {MaterializeAction} from 'angular2-materialize';
 
+import { User } from '../../entities/user';
 import { Profile } from '../../entities/profile';
 import { Labels } from '../../constants/labels';
 
@@ -15,14 +17,21 @@ declare var jQuery: any;
   templateUrl: './profile-edit.component.html',
   styleUrls: ['./profile-edit.component.css']
 })
+
 export class ProfileEditComponent implements OnInit {
 
   labels: Labels = new Labels();
 
   boxTitle = this.labels.label["EDIT_PROFILE"];
+  boxPasswordTitle = this.labels.label["EDIT_PROFILE_PASSWORD"];
 
   myUserId: String;
   profile = new Profile;
+
+  changePassword = new User;
+  newPassword1: String;
+  newPassword2: String;
+
   errorMsg = '';
 
   constructor( private _serviceProfile:ProfileService ) {
