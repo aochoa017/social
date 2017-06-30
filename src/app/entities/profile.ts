@@ -41,8 +41,16 @@ export class Profile extends User {
     return this.name;
   }
 
+  public getEmail() {
+    return this.email;
+  }
+
   public setName(name) {
     this.name = name;
+  }
+
+  public setEmail(email) {
+    this.email = email;
   }
 
 }

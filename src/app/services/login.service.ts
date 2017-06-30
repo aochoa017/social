@@ -3,16 +3,19 @@ import {Router} from '@angular/router';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
+import { AuthService } from './auth.service';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/forkJoin';
 
 @Injectable()
 export class LoginService {
 
   private apiUrl = 'http://localhost:8888/api/login';  // URL to web API
 
-  constructor( private _router: Router, private http: Http ){}
+  constructor( private _router: Router, private http: Http, private _googleAuth: AuthService, ){}
 
   postLogin(body: Object): Observable<any> {
     let data = JSON.stringify(body); // Stringify payload
@@ -26,7 +29,17 @@ export class LoginService {
   }
 
   checkCredentials(){
+
+      // this._googleAuth.isSignedIn().subscribe(
+      //                    res => {
+      //                     console.log(res);
+      //                    });
+
+
     var access_token = Cookie.get('access_token');
+    // var googleSignIn = this._googleAuth.isSignedIn();
+    // console.log(googleSignIn);
+    console.log("checkCredentials");
     if (access_token === null){
         this._router.navigate(['login']);
     } else if ( this._router.url == 'login' ){

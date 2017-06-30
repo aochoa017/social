@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -28,6 +28,18 @@ export class UserService {
                     .map(this.extractData)
                     .catch(this.handleError);
   }
+
+  postUser(body: Object): Observable<any> {
+    let data = JSON.stringify(body); // Stringify payload
+    console.log(body);
+    console.log(data);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.apiUrl, data, options)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+  
 /*
   login(user){
     // console.log(user.user);

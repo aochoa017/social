@@ -1,8 +1,11 @@
 import { Component, OnInit, NgZone, AfterViewInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { AuthService, AppGlobals } from 'angular2-google-login';
+
+import { AuthService } from '../../services/auth.service';
+import { AppGlobals } from '../../services/app-globals';
 
 import { User } from '../../entities/user';
+import { Profile } from '../../entities/profile';
 import { Messages } from '../../constants/messages';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
@@ -28,6 +31,10 @@ export class LoginFormComponent implements AfterViewInit {
   title: String;
   isSignInShow: boolean;
   isSignUpShow: boolean;
+  isSignUp2Show: boolean;
+
+  newUser = new Profile();
+  isLoginValid2 = false;
 
   imageURL: string;
   email: string;
@@ -57,9 +64,23 @@ export class LoginFormComponent implements AfterViewInit {
     this._googleAuth.authenticateUser((result) => {
       console.log(result);
       //Using Angular2 Zone dependency to manage the scope of variables
-      this._zone.run(() => {
-        this.getData();
-      });
+      this.errorLoginUI = [];
+      if( result ){
+        this.isSignUpShow = false;
+        this.isSignUp2Show = true;
+        this._zone.run(() => {
+          this.getData();
+        });
+        // Si tengo email registrado me logeo
+        // if() {
+        //
+        // }
+        this.newUser.setUser((this.name).toLowerCase().replace(/\s/g,''));
+        this.newUser.setName(this.name);
+        this.newUser.setEmail(this.email);
+      } else {
+        this.errorLoginUI.push( this.msg.error["SIGN_UP_FAIL"] );
+      }
     });
   }
 
@@ -97,12 +118,23 @@ export class LoginFormComponent implements AfterViewInit {
     this.title = "Login";
     this.isSignInShow = true;
     this.isSignUpShow = false;
+    this.isSignUp2Show = false;
   }
 
   onSignUp() {
     this.title = "Sign Up";
     this.isSignInShow = false;
     this.isSignUpShow = true;
+    this.isSignUp2Show = false;
+  }
+
+  createUser(newUser) {
+    this._serviceUser.postUser(newUser)
+                     .subscribe(
+                       res => {
+                         console.log(res);
+                       },
+                       error =>  this.errorMsg = <any>error);
   }
 
   login(user){
@@ -164,6 +196,32 @@ export class LoginFormComponent implements AfterViewInit {
 
     if( !errorUser && !errorPassword ) {
       this.isLoginValid = true;
+    }
+  }
+
+  onSubmit2() {
+    this.formLoginValidation2();
+    if( this.isLoginValid2 ) {
+      console.log("validations true");
+      // this.createUser(this.newUser);
+    } else {
+      console.log("validations false");}
+  }
+
+  formLoginValidation2() {
+    this.errorLoginUI = [];
+    var errorUser = true;
+
+    if( this.newUser.user == "" ) {
+      this.errorLoginUI.push( this.msg.error["USER_REQUIRED"] );
+    } else if( (this.newUser.user.split(" ").length - 1) > 0 ) {
+      this.errorLoginUI.push( this.msg.error["NOT_WHITE_SPACES"] );
+    } else {
+      errorUser = false;
+    }
+
+    if( !errorUser ) {
+      this.isLoginValid2 = true;
     }
   }
 

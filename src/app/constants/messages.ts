@@ -7,6 +7,9 @@ export class Messages {
     'USER_REQUIRED': 'El usuario es obligatorio',
     'PASSWORD_REQUIRED': 'La contraseña es obligatoria',
     'LOGIN_FAIL': 'El usuario y/o contraseña son incorrectos',
+
+    'SIGN_UP_FAIL': 'No se ha podido acceder desde su cuenta',
+    'NOT_WHITE_SPACES': 'El usuario no puede tener espacios en blanco'
   };
 
 }

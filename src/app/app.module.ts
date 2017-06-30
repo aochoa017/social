@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterializeModule } from "angular2-materialize";
-// import { AuthService } from 'angular2-google-login';
+import { AuthService } from './services/auth.service';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -119,7 +119,7 @@ const appRoutes: Routes = [
     NgUploaderModule,
     MaterializeModule
   ],
-  providers: [ProfileService,UserService,LoginService,ContactService],
+  providers: [ProfileService,UserService,LoginService,AuthService,ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

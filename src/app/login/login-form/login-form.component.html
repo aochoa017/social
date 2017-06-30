@@ -37,5 +37,18 @@
       <button class="btn btn-danger" (click)="logout()">Logout</button>
       <button (click)="onSignIn()" class="btn waves-effect waves-light">Ya tengo cuenta</button>
     </div>
+    <form *ngIf="this.isSignUp2Show" (ngSubmit)="onSubmit2()" #user2Form="ngForm">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="user" name="user" type="text" class="" [(ngModel)]="newUser.user">
+          <label for="user" [ngClass]="{'active': newUser.user }">Usuario</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <button class="btn waves-effect waves-light" type="submit">Registrarse</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
