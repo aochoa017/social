@@ -1,24 +1,5 @@
-// import { Validator, AbstractControl } from '@angular/forms';
-//
-// export class ValidForms {
-//
-//   constructor(){}
-//
-//   validateEmail(c: AbstractControl): { [key: string]: any } {
-//     let EMAIL_REGEXP = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$";
-//
-//     return EMAIL_REGEXP.match(c.value) ? null : {
-//       validateEmail: {
-//         valid: false
-//       }
-//     };
-//   }
-//
-// }
-
 import { Directive, forwardRef } from '@angular/core';
 import { NG_VALIDATORS, AbstractControl, ValidatorFn, Validator, FormControl } from '@angular/forms';
-
 
 // validation function
 function validateEmailFactory() : ValidatorFn {
@@ -47,14 +28,13 @@ function validateEmailFactory() : ValidatorFn {
   }
 }
 
-
 @Directive({
   selector: '[emailCustom][ngModel]',
   providers: [
-    { provide: NG_VALIDATORS, useExisting: CustomValidator, multi: true }
+    { provide: NG_VALIDATORS, useExisting: EmailValidator, multi: true }
   ]
 })
-export class CustomValidator implements Validator {
+export class EmailValidator implements Validator {
   validator: ValidatorFn;
 
   constructor() {

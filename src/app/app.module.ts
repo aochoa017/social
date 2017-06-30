@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterializeModule } from "angular2-materialize";
 // import { AuthService } from 'angular2-google-login';
-import { CustomValidator } from './valid-forms';
+
+import { EmailValidator } from './validators/valid-email';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -111,7 +112,7 @@ const appRoutes: Routes = [
     DashboardComponent,
     CardUserComponent,
     ContactsComponent,
-    CustomValidator
+    EmailValidator
   ],
   imports: [
     BrowserModule,
