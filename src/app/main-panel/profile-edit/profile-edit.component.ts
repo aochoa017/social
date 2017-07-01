@@ -7,6 +7,7 @@ import {MaterializeAction} from 'angular2-materialize';
 import { Password } from '../../entities/password';
 import { Profile } from '../../entities/profile';
 import { Labels } from '../../constants/labels';
+import { Messages } from '../../constants/messages';
 
 import { ProfileService } from '../../services/profile.service';
 
@@ -21,6 +22,7 @@ declare var jQuery: any;
 export class ProfileEditComponent implements OnInit {
 
   labels: Labels = new Labels();
+  message: Messages = new Messages();
 
   boxTitle = this.labels.label["EDIT_PROFILE"];
   boxPasswordTitle = this.labels.label["EDIT_PROFILE_PASSWORD"];
@@ -29,10 +31,13 @@ export class ProfileEditComponent implements OnInit {
   profile = new Profile;
 
   changePassword = new Password;
+  changePasswordError: any = [];
 
   errorMsg = '';
 
   constructor( private _serviceProfile:ProfileService ) {
+    this.changePasswordError['success'] = true;
+    this.changePasswordError['value'] = this.message.error["PASSWORD_RULES"];
     console.log("constructor profile-edit");
     this.myUserId = localStorage.getItem("userId");
     this.getProfile(this.myUserId);
@@ -81,6 +86,19 @@ export class ProfileEditComponent implements OnInit {
     this.submitted = true;
     console.log( this.profile );
     this.putProfile( this.myUserId );
+  }
+
+  onSubmitChangePassword(passwrodForm, isValid) {
+    if ( isValid ) {
+      // Check New password
+      if ( passwrodForm.newPassword == passwrodForm.newPasswordRepeat ) {
+        this.changePasswordError['success'] = true;
+        this.changePasswordError['value'] = this.labels.label["EDIT_PROFILE_PASSWORD"];
+      } else {
+        this.changePasswordError['success'] = false;
+        this.changePasswordError['value'] = "La contraseña repetida no es la misma";
+      }
+    }
   }
 
 

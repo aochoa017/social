@@ -65,8 +65,15 @@
           <div class="header">
             <h2 class="title">{{boxPasswordTitle}}</h2>
           </div>
+          <!-- <div *ngIf="changePasswordError" class="card-panel red darken-3">
+            <ul>
+              <li>
+                <i class="material-icons">highlight_off</i> {{changePasswordError}}
+              </li>
+            </ul>
+          </div> -->
           <div class="content">
-            <form (ngSubmit)="onSubmitsddsds()" #passwordForm="ngForm">
+            <form (ngSubmit)="onSubmitChangePassword(passwordForm.value,passwordForm.valid)" #passwordForm="ngForm">
               <div class="row">
                 <div class="input-field col s12">
                   <input id="oldPassword" name="oldPassword" type="text" class="validate" [(ngModel)]="changePassword.password" #oldPassword="ngModel" required>
@@ -82,11 +89,9 @@
                 <div class="input-field col s12">
                   <input [disabled]="!newPassword.valid" id="newPasswordRepeat" name="newPasswordRepeat" type="text" class="" [ngClass]="{'valid': newPasswordRepeat.valid && newPasswordRepeat.touched, 'invalid': !newPasswordRepeat.valid && newPasswordRepeat.touched }" [(ngModel)]="changePassword.newPasswordRepeat" #newPasswordRepeat="ngModel" required passwordCustom>
                   <label for="newPasswordRepeat" [ngClass]="{'active': changePassword.newPasswordRepeat }">Repetir contraseña</label>
-                  <span class="red-text text-darken-3" *ngIf="!newPasswordRepeat.valid && newPasswordRepeat.touched && newPassword.valid">Debe contener un número, una minúscula, una mayúscula y tener de 6 a 20 caracteres</span>
+                  <span class="red-text text-darken-3" *ngIf="!newPasswordRepeat.valid && newPasswordRepeat.touched && newPassword.valid || !changePasswordError.success">{{changePasswordError.value}}</span>
                 </div>
               </div>
-              <pre>{{newPassword.valid}}</pre>
-              <pre>{{newPassword.touched}}</pre>
               <div class="row">
                 <div class="col s12">
                   <button class="btn waves-effect waves-light" [disabled]="!passwordForm.form.valid || passwordForm.form.pristine" type="submit">Aplicar</button>
