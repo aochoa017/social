@@ -69,20 +69,24 @@
             <form (ngSubmit)="onSubmitsddsds()" #passwordForm="ngForm">
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="oldPassword" name="oldPassword" type="text" class="validate" [(ngModel)]="changePassword.password" required emailCustom>
+                  <input id="oldPassword" name="oldPassword" type="text" class="validate" [(ngModel)]="changePassword.password" #oldPassword="ngModel" required>
                   <label for="oldPassword" [ngClass]="{'active': changePassword.password }">Contraseña actual</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="newPassword1" name="newPassword1" type="text" class="validate" [(ngModel)]="newPassword1">
-                  <label for="newPassword1" [ngClass]="{'active': newPassword1 }">Contraseña nueva</label>
+                  <input [disabled]="!oldPassword.valid" id="newPassword" name="newPassword" type="text" class="" [ngClass]="{'valid': newPassword.valid && newPassword.touched, 'invalid': !newPassword.valid && newPassword.touched }" [(ngModel)]="changePassword.newPassword" #newPassword="ngModel" required passwordCustom>
+                  <label for="newPassword" [ngClass]="{'active': changePassword.newPassword }">Contraseña nueva</label>
+                  <span class="red-text text-darken-3" *ngIf="!newPassword.valid && newPassword.touched && oldPassword.valid">Debe contener un número, una minúscula, una mayúscula y tener de 6 a 20 caracteres</span>
                 </div>
                 <div class="input-field col s12">
-                  <input id="newPassword2" name="newPassword2" type="text" class="validate" [(ngModel)]="newPassword2">
-                  <label for="newPassword2" [ngClass]="{'active': newPassword2 }">Repetir contraseña</label>
+                  <input [disabled]="!newPassword.valid" id="newPasswordRepeat" name="newPasswordRepeat" type="text" class="" [ngClass]="{'valid': newPasswordRepeat.valid && newPasswordRepeat.touched, 'invalid': !newPasswordRepeat.valid && newPasswordRepeat.touched }" [(ngModel)]="changePassword.newPasswordRepeat" #newPasswordRepeat="ngModel" required passwordCustom>
+                  <label for="newPasswordRepeat" [ngClass]="{'active': changePassword.newPasswordRepeat }">Repetir contraseña</label>
+                  <span class="red-text text-darken-3" *ngIf="!newPasswordRepeat.valid && newPasswordRepeat.touched && newPassword.valid">Debe contener un número, una minúscula, una mayúscula y tener de 6 a 20 caracteres</span>
                 </div>
               </div>
+              <pre>{{newPassword.valid}}</pre>
+              <pre>{{newPassword.touched}}</pre>
               <div class="row">
                 <div class="col s12">
                   <button class="btn waves-effect waves-light" [disabled]="!passwordForm.form.valid || passwordForm.form.pristine" type="submit">Aplicar</button>

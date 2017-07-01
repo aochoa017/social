@@ -7,6 +7,7 @@ import { MaterializeModule } from "angular2-materialize";
 // import { AuthService } from 'angular2-google-login';
 
 import { EmailValidator } from './validators/valid-email';
+import { PasswordValidator } from './validators/valid-password';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -112,7 +113,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     CardUserComponent,
     ContactsComponent,
-    EmailValidator
+    EmailValidator,
+    PasswordValidator
   ],
   imports: [
     BrowserModule,

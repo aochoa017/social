@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 import {MaterializeAction} from 'angular2-materialize';
 
-import { User } from '../../entities/user';
+import { Password } from '../../entities/password';
 import { Profile } from '../../entities/profile';
 import { Labels } from '../../constants/labels';
 
@@ -28,14 +28,11 @@ export class ProfileEditComponent implements OnInit {
   myUserId: String;
   profile = new Profile;
 
-  changePassword = new User;
-  newPassword1: String;
-  newPassword2: String;
+  changePassword = new Password;
 
   errorMsg = '';
 
   constructor( private _serviceProfile:ProfileService ) {
-
     console.log("constructor profile-edit");
     this.myUserId = localStorage.getItem("userId");
     this.getProfile(this.myUserId);
