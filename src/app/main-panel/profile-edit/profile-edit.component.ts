@@ -10,6 +10,7 @@ import { Labels } from '../../constants/labels';
 import { Messages } from '../../constants/messages';
 
 import { ProfileService } from '../../services/profile.service';
+import { UserService } from '../../services/user.service';
 
 declare var jQuery: any;
 
@@ -35,7 +36,7 @@ export class ProfileEditComponent implements OnInit {
 
   errorMsg = '';
 
-  constructor( private _serviceProfile:ProfileService ) {
+  constructor( private _serviceProfile:ProfileService, private _serviceUser:UserService,  ) {
     this.changePasswordError['success'] = true;
     this.changePasswordError['value'] = this.message.error["PASSWORD_RULES"];
     console.log("constructor profile-edit");
@@ -81,6 +82,15 @@ export class ProfileEditComponent implements OnInit {
                        error =>  this.errorMsg = <any>error);
   }
 
+  putUserPassword(id,body) {
+    this._serviceUser.putUserPassword(id, body)
+                     .subscribe(
+                       res => {
+                         console.log(res);
+                       },
+                       error =>  this.errorMsg = <any>error);
+  }
+
   submitted = false;
   onSubmit() {
     this.submitted = true;
@@ -90,10 +100,15 @@ export class ProfileEditComponent implements OnInit {
 
   onSubmitChangePassword(passwrodForm, isValid) {
     if ( isValid ) {
+      console.log(passwrodForm);
       // Check New password
       if ( passwrodForm.newPassword == passwrodForm.newPasswordRepeat ) {
         this.changePasswordError['success'] = true;
         this.changePasswordError['value'] = this.labels.label["EDIT_PROFILE_PASSWORD"];
+        let body: Object = {};
+        body['password'] = passwrodForm.newPassword;
+        console.log(body);
+        this.putUserPassword(this.myUserId,body);
       } else {
         this.changePasswordError['success'] = false;
         this.changePasswordError['value'] = "La contraseña repetida no es la misma";

@@ -76,8 +76,8 @@
             <form (ngSubmit)="onSubmitChangePassword(passwordForm.value,passwordForm.valid)" #passwordForm="ngForm">
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="oldPassword" name="oldPassword" type="text" class="validate" [(ngModel)]="changePassword.password" #oldPassword="ngModel" required>
-                  <label for="oldPassword" [ngClass]="{'active': changePassword.password }">Contraseña actual</label>
+                  <input id="password" name="password" type="text" class="validate" [(ngModel)]="changePassword.password" #oldPassword="ngModel" required>
+                  <label for="password" [ngClass]="{'active': changePassword.password }">Contraseña actual</label>
                 </div>
               </div>
               <div class="row">
