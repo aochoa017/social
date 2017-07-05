@@ -71,18 +71,21 @@ export class ProfileService {
   private handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
+    let body;
     if (error instanceof Response) {
-      const body = error.json() || '';
+      body = error.json() || '';
       const err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
+    console.error(body);
     // console.error(errMsg);
     if (error.status === 401) {
       let array = {
         title: 'Unauthorized / No autorizado ',
-        content: 'El usuario no tiene los permisos suficientes para realizar la operación',
+        content: body.error_description,
+        // content: 'El usuario no tiene los permisos suficientes para realizar la operación',
       };
       return Observable.throw(array);
     } else {
