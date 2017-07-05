@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, Input, EventEmitter, ViewChild } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 import { MaterializeAction } from 'angular2-materialize';
@@ -32,6 +32,8 @@ export class ProfileEditComponent implements OnInit {
 
   myUserId: String;
   profile = new Profile;
+  @ViewChild("profileForm") profileForm: NgForm;
+  loadingProfileForm:boolean = false;
 
   changePassword = new Password;
   changePasswordError: any = [];
@@ -85,10 +87,13 @@ export class ProfileEditComponent implements OnInit {
     this._serviceProfile.putProfile(id, this.profile)
                      .subscribe(
                        res => {
+                         this.loadingProfileForm = false;
+                         this.profileForm.form.markAsPristine();
                          console.log(res);
                          Materialize.toast('Perfil Actualizado', 4000, 'light-blue');
                        },
                        error => {
+                         this.loadingProfileForm = false;
                          this.errorMsg = <any>error;
                          console.log("Pasas por el error del component");
                          console.log(error);
@@ -110,9 +115,8 @@ export class ProfileEditComponent implements OnInit {
                        error =>  this.errorMsg = <any>error);
   }
 
-  submitted = false;
   onSubmit() {
-    this.submitted = true;
+    this.loadingProfileForm = true;
     console.log( this.profile );
     this.putProfile( this.myUserId );
   }
