@@ -67,6 +67,9 @@ export class ProfileEditComponent implements OnInit {
   closeModal() {
     this.modalActions.emit({action:"modal",params:['close']});
   }
+  onLoadModalEmit(bbbb:boolean) {
+    this.loadModal = bbbb;
+  }
 
   getProfile( id ) {
     this._serviceProfile.getProfile(id)

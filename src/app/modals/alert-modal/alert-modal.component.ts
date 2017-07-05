@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {MaterializeAction} from 'angular2-materialize';
 
 import { Modal } from '../../entities/modal';
@@ -15,6 +15,8 @@ export class AlertModalComponent implements OnInit {
   @Input()
   modalCustom:Modal;
 
+  @Output() onLoadModalEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   constructor() { }
 
   ngOnInit() {
@@ -26,6 +28,8 @@ export class AlertModalComponent implements OnInit {
   }
   closeModal() {
     this.modalActions.emit({action:"modal",params:['close']});
+    this.onLoadModalEmit.emit(false);
+    console.log("TB x AKI");
   }
 
 }
