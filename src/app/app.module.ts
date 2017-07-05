@@ -29,6 +29,7 @@ import { NgUploaderModule } from 'ngx-uploader';
 import { DashboardComponent } from './main-panel/dashboard/dashboard.component';
 import { CardUserComponent } from './card-user/card-user.component';
 import { ContactsComponent } from './main-panel/contacts/contacts.component';
+import { AlertModalComponent } from './modals/alert-modal/alert-modal.component';
 
 const appRoutes: Routes = [
   {
@@ -114,7 +115,8 @@ const appRoutes: Routes = [
     CardUserComponent,
     ContactsComponent,
     EmailValidator,
-    PasswordValidator
+    PasswordValidator,
+    AlertModalComponent
   ],
   imports: [
     BrowserModule,

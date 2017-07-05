@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 import {MaterializeAction} from 'angular2-materialize';
 
+import { Modal } from '../../entities/modal';
 import { Password } from '../../entities/password';
 import { Profile } from '../../entities/profile';
 import { Labels } from '../../constants/labels';
@@ -33,6 +34,9 @@ export class ProfileEditComponent implements OnInit {
 
   changePassword = new Password;
   changePasswordError: any = [];
+
+  loadModal:boolean = false;
+  modalCustom:Modal = new Modal();
 
   errorMsg = '';
 
@@ -79,7 +83,17 @@ export class ProfileEditComponent implements OnInit {
                        res => {
                          console.log(res);
                        },
-                       error =>  this.errorMsg = <any>error);
+                       error => {
+                         this.errorMsg = <any>error;
+                         console.log("Pasas por el error del component");
+                         console.log(error);
+                        //  this.openModal();
+                        // this.modalCustom = error;
+                        this.modalCustom.setTitle(error.title);
+                        this.modalCustom.setContent(error.content);
+                        this.loadModal = true;
+                        this.getProfile(this.myUserId);
+                       });
   }
 
   putUserPassword(id,body) {

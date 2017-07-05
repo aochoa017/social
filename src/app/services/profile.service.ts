@@ -5,6 +5,7 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 
 import { Profile } from '../entities/profile';
 
@@ -55,6 +56,7 @@ export class ProfileService {
     console.log(body);
     console.log(data);
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('Authorization', 'Bearer ' + Cookie.get('access_token'));
     let options = new RequestOptions({ headers: headers });
     return this.http.put(this.apiUrl + '/' + id, data, options)
     .map(this.extractData)
@@ -76,8 +78,16 @@ export class ProfileService {
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
+    // console.error(errMsg);
+    if (error.status === 401) {
+      let array = {
+        title: 'Unauthorized / No autorizado ',
+        content: 'El usuario no tiene los permisos suficientes para realizar la operación',
+      };
+      return Observable.throw(array);
+    } else {
+      return Observable.throw(errMsg);
+    }
   }
 
 }

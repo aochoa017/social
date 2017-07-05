@@ -144,3 +144,5 @@
     <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="startUpload()">Actualizar</a>
   </div>
 </div>
+
+<app-alert-modal *ngIf="loadModal" [modalCustom]="modalCustom"></app-alert-modal>
