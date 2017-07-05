@@ -36,6 +36,8 @@ export class ProfileEditComponent implements OnInit {
   loadingProfileForm:boolean = false;
 
   changePassword = new Password;
+  @ViewChild("passwordForm") passwordForm: NgForm;
+  loadingPasswordForm:boolean = false;
   changePasswordError: any = [];
 
   loadModal:boolean = false;
@@ -90,7 +92,7 @@ export class ProfileEditComponent implements OnInit {
                          this.loadingProfileForm = false;
                          this.profileForm.form.markAsPristine();
                          console.log(res);
-                         Materialize.toast('Perfil Actualizado', 4000, 'light-blue');
+                         Materialize.toast('Perfil actualizado', 4000, 'light-blue');
                        },
                        error => {
                          this.loadingProfileForm = false;
@@ -110,18 +112,31 @@ export class ProfileEditComponent implements OnInit {
     this._serviceUser.putUserPassword(id, body)
                      .subscribe(
                        res => {
+                         this.loadingPasswordForm = false;
+                        //  this.passwordForm.form.markAsPristine();
+                         this.passwordForm.form.reset();
                          console.log(res);
+                         Materialize.toast('Contraseña actualizada', 4000, 'light-blue');
                        },
-                       error =>  this.errorMsg = <any>error);
+                       error => {
+                         this.loadingPasswordForm = false;
+                         console.log(error);
+                         this.loadingProfileForm = false;
+                         this.errorMsg = <any>error;
+                        this.modalCustom.setTitle(error.title);
+                        this.modalCustom.setContent(error.content);
+                        this.loadModal = true;
+                       });
   }
 
-  onSubmit() {
+  onSubmitProfile() {
     this.loadingProfileForm = true;
     console.log( this.profile );
     this.putProfile( this.myUserId );
   }
 
   onSubmitChangePassword(passwrodForm, isValid) {
+    this.loadingPasswordForm = true;
     if ( isValid ) {
       console.log(passwrodForm);
       // Check New password
@@ -129,10 +144,12 @@ export class ProfileEditComponent implements OnInit {
         this.changePasswordError['success'] = true;
         this.changePasswordError['value'] = this.labels.label["EDIT_PROFILE_PASSWORD"];
         let body: Object = {};
-        body['password'] = passwrodForm.newPassword;
+        body['oldPassword'] = passwrodForm.password;
+        body['newPassword'] = passwrodForm.newPassword;
         console.log(body);
         this.putUserPassword(this.myUserId,body);
       } else {
+        this.loadingPasswordForm = false;
         this.changePasswordError['success'] = false;
         this.changePasswordError['value'] = "La contraseña repetida no es la misma";
       }
