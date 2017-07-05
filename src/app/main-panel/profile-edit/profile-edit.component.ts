@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
-import {MaterializeAction} from 'angular2-materialize';
+import { MaterializeAction } from 'angular2-materialize';
 
 import { Modal } from '../../entities/modal';
 import { Password } from '../../entities/password';
@@ -14,6 +14,7 @@ import { ProfileService } from '../../services/profile.service';
 import { UserService } from '../../services/user.service';
 
 declare var jQuery: any;
+declare var Materialize:any;
 
 @Component({
   selector: 'app-profile-edit',
@@ -85,6 +86,7 @@ export class ProfileEditComponent implements OnInit {
                      .subscribe(
                        res => {
                          console.log(res);
+                         Materialize.toast('Perfil Actualizado', 4000, 'light-blue');
                        },
                        error => {
                          this.errorMsg = <any>error;
