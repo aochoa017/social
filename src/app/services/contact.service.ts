@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { environment } from '../../environments/environment';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -10,7 +11,7 @@ import { User } from '../entities/user';
 @Injectable()
 export class ContactService {
 
-  private apiUrl = 'http://localhost:8888/api/contacts';  // URL to web API
+  private apiUrl = environment.apiUrl + '/api/contacts';  // URL to web API
 
   constructor( private http: Http ){}
 

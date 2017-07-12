@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { environment } from '../../environments/environment';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +13,7 @@ import { Profile } from '../entities/profile';
 @Injectable()
 export class ProfileService {
 
-  private apiUrl = 'http://localhost:8888/api/profile';  // URL to web API
+  private apiUrl = environment.apiUrl + '/api/profile';  // URL to web API
   // private myProfile: Profile;
 
   constructor( private http: Http ){}

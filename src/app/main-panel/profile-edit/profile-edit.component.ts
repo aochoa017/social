@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 import { MaterializeAction } from 'angular2-materialize';
 
@@ -23,6 +24,8 @@ declare var Materialize:any;
 })
 
 export class ProfileEditComponent implements OnInit {
+
+  apiUrl = environment.apiUrl;
 
   labels: Labels = new Labels();
   message: Messages = new Messages();
@@ -215,7 +218,7 @@ export class ProfileEditComponent implements OnInit {
   startUpload(): void {  // manually start uploading
     const event: UploadInput = {
       type: 'uploadAll',
-      url: 'http://localhost:8888/api/profile/avatar/' + this.myUserId,
+      url: environment.apiUrl + '/api/profile/avatar/' + this.myUserId,
       method: 'POST',
       fieldName: 'avatar',
       data: { foo: 'bar' },

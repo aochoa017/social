@@ -116,7 +116,7 @@
           <div class="photo-author">
             <a (click)="openModal()">
               <span class="avatarHover">
-                <img class="avatar" [src]="['http://localhost:8888/api/assets/user/avatar/'+profile.avatar]">
+                <img class="avatar" [src]="[apiUrl+'/api/assets/user/avatar/'+profile.avatar]">
               </span>
             </a>
             <h2 class="title">

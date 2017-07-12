@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { MaterializeModule } from "angular2-materialize";
 // import { AuthService } from 'angular2-google-login';
 
@@ -122,11 +123,11 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     NgUploaderModule,
     MaterializeModule
   ],
-  providers: [ProfileService,UserService,LoginService,ContactService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},ProfileService,UserService,LoginService,ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,67 +1,5 @@
 <div class="content-page">
   <div class="row">
-    <div class="col s12 m8 hide">
-      <div class="box">
-        <div class="header">
-          <h2 class="title">{{boxTitle}}</h2>
-        </div>
-        <div class="content">
-          <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
-            <div class="row">
-              <div class="input-field col s6">
-                <input id="name" name="name" type="text" class="validate" [(ngModel)]="profile.name">
-                <label for="name" [ngClass]="{'active': profile.name }">Nombre</label>
-              </div>
-              <div class="input-field col s6">
-                <input id="surname" name="surname" type="text" class="validate" [(ngModel)]="profile.surname">
-                <label for="surname" [ngClass]="{'active': profile.surname }">Apellidos</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="adress" name="adress" type="text" class="validate" [(ngModel)]="profile.adress">
-                <label for="adress" [ngClass]="{'active': profile.adress }">Dirección</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s4">
-                <input id="city" name="city" type="text" class="validate" [(ngModel)]="profile.city">
-                <label for="city" [ngClass]="{'active': profile.city }">Ciudad</label>
-              </div>
-              <div class="input-field col s4">
-                <input id="country" name="country" type="text" class="validate" [(ngModel)]="profile.country">
-                <label for="country" [ngClass]="{'active': profile.country }">País</label>
-              </div>
-              <div class="input-field col s4">
-                <input id="zipCode" name="zipCode" type="text" class="validate" [(ngModel)]="profile.zipCode">
-                <label for="zipCode" [ngClass]="{'active': profile.zipCode }">Código postal</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s6">
-                <input id="email" name="email" type="email" class="validate" [(ngModel)]="profile.email" required>
-                <label for="email" [ngClass]="{'active': profile.email }">Email</label>
-              </div>
-              <div class="input-field col s6">
-                <input id="phone" name="phone" type="text" class="validate" [(ngModel)]="profile.phone">
-                <label for="phone" [ngClass]="{'active': profile.phone }">Teléfono</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <textarea id="biography" name="biography" class="materialize-textarea">{{profile.biography}}</textarea>
-                <label for="biography" [ngClass]="{'active': profile.biography }">Biografía</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col s12">
-                <button class="btn waves-effect waves-light" [disabled]="!profileForm.form.valid || profileForm.form.pristine" type="submit">Guardar</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
     <div class="col s12">
       <div class="box">
         <div class="image">
@@ -69,7 +7,7 @@
         </div>
         <div class="content">
           <div class="photo-author">
-            <a href="#!user"><img class="avatar" [src]="['http://localhost:8888/api/assets/user/avatar/'+profile.avatar]"></a>
+            <a href="#!user"><img class="avatar" [src]="[apiUrl+'/api/assets/user/avatar/'+profile.avatar]"></a>
             <h2 class="title">
               {{profile.name}} {{profile.surname}}
               <small>{{profile.user}}</small>

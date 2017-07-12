@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone, AfterViewInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { AuthService, AppGlobals } from 'angular2-google-login';
+// import { AuthService, AppGlobals } from 'angular2-google-login';
 
 import { User } from '../../entities/user';
 import { Messages } from '../../constants/messages';
@@ -13,7 +13,7 @@ import { LoginService } from '../../services/login.service';
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
-  providers: [AuthService]
+  // providers: [AuthService]
 })
 export class LoginFormComponent implements AfterViewInit {
 
@@ -38,15 +38,15 @@ export class LoginFormComponent implements AfterViewInit {
     private _router: Router,
     private _serviceUser:UserService,
     private _serviceLogin:LoginService,
-    private _googleAuth: AuthService,
+    // private _googleAuth: AuthService,
     private _zone: NgZone
   ) {
     this.onSignIn();
   }
 
   ngAfterViewInit() {
-    AppGlobals.GOOGLE_CLIENT_ID = '1919357779-jea4hdlq7dg5elcf0sos3196783ha7e0.apps.googleusercontent.com';
-    this.getData();
+    // AppGlobals.GOOGLE_CLIENT_ID = '1919357779-jea4hdlq7dg5elcf0sos3196783ha7e0.apps.googleusercontent.com';
+    // this.getData();
     // setTimeout(() => { this.googleAuthenticate() }, 950);
   }
 
@@ -54,13 +54,13 @@ export class LoginFormComponent implements AfterViewInit {
    * Calling Google Authentication service
    */
   googleAuthenticate() {
-    this._googleAuth.authenticateUser((result) => {
-      console.log(result);
-      //Using Angular2 Zone dependency to manage the scope of variables
-      this._zone.run(() => {
-        this.getData();
-      });
-    });
+    // this._googleAuth.authenticateUser((result) => {
+    //   console.log(result);
+    //   //Using Angular2 Zone dependency to manage the scope of variables
+    //   this._zone.run(() => {
+    //     this.getData();
+    //   });
+    // });
   }
 
   /**
@@ -76,12 +76,12 @@ export class LoginFormComponent implements AfterViewInit {
   /**
    * Logout user and calls function to clear the localstorage
    */
-  logout() {
-    let scopeReference = this;
-    this._googleAuth.userLogout(function () {
-      scopeReference.clearLocalStorage();
-    });
-  }
+  // logout() {
+  //   let scopeReference = this;
+  //   this._googleAuth.userLogout(function () {
+  //     scopeReference.clearLocalStorage();
+  //   });
+  // }
 
   /**
    * Clearing Localstorage of browser
@@ -109,6 +109,7 @@ export class LoginFormComponent implements AfterViewInit {
     var isUserLog = this._serviceLogin.postLogin(user).subscribe(
       res => {
         console.log(res);
+        this.errorLoginUI = [];
         if ( res.success ){//Md5.hashStr(user.password) ){
           console.log("SUCCESS");
           console.log("expira en " + res.token.expires_in/this.daysToSeconds);
@@ -128,11 +129,16 @@ export class LoginFormComponent implements AfterViewInit {
           return true;
         } else {
           console.log("FAIL");
+          console.log(res);
           this.errorLoginUI.push( this.msg.error["LOGIN_FAIL"] );
           return false;
         }
       },
-      function(error) { console.log("Error happened" + error)},
+      error => {
+        // console.log("Error happened" + error);
+        console.log("llega");
+        this.errorLoginUI.push( this.msg.error["LOGIN_FAIL"] );
+      },
       function() { console.log("the subscription is completed")}
     );
     return isUserLog;

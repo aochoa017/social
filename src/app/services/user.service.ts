@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
+import { environment } from '../../environments/environment';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -14,7 +15,7 @@ import { User } from '../entities/user';
 @Injectable()
 export class UserService {
 
-  private apiUrl = 'http://localhost:8888/api/user';  // URL to web API
+  private apiUrl = environment.apiUrl + '/api/user';  // URL to web API
   // private user: String;
 
   constructor( private _router: Router, private http: Http ){}

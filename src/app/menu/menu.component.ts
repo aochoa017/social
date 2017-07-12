@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 import { Profile } from '../entities/profile';
 import { ProfileService } from '../services/profile.service';
@@ -12,6 +13,8 @@ declare var jQuery: any;
 })
 export class MenuComponent implements OnInit {
 
+  apiUrl = environment.apiUrl;
+
   myUserId: String;
   myUser: String;
   myUserName: String;
@@ -23,7 +26,12 @@ export class MenuComponent implements OnInit {
   profile = new Profile;
   errorMsg = '';
 
-  menu = {};
+  menu = {
+    "dashboard": "",
+    "contacts": "",
+    "profile": "",
+    "editProfile": ""
+  };
 
   constructor( private _serviceProfile:ProfileService ) {
 
@@ -42,7 +50,7 @@ export class MenuComponent implements OnInit {
       "contacts": "/contacts",
       "profile": "/profile/" + this.myUser,
       "editProfile": "/profile/me/edit"
-    }
+    };
 
     jQuery(".button-collapse").sideNav({
       menuWidth: 300, // Default is 300

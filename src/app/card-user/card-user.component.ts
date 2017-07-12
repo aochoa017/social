@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 import { User } from '../entities/user';
 import { Profile } from '../entities/profile';
@@ -11,6 +12,8 @@ import { ContactService } from '../services/contact.service';
   styleUrls: ['./card-user.component.css']
 })
 export class CardUserComponent implements OnInit {
+
+  apiUrl = environment.apiUrl;
 
   @Input()
   profileId: String;

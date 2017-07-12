@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 import { Profile } from '../../entities/profile';
 import { Labels } from '../../constants/labels';
@@ -12,6 +13,8 @@ import { ProfileService } from '../../services/profile.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
+  apiUrl = environment.apiUrl;
 
   labels: Labels = new Labels();
 

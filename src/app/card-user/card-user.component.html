@@ -1,6 +1,6 @@
 <div class="card horizontal">
   <div class="card-image">
-    <img *ngIf="profile.avatar" class="avatar" [src]="['http://localhost:8888/api/assets/user/avatar/'+profile.avatar]">
+    <img *ngIf="profile.avatar" class="avatar" [src]="[apiUrl+'/api/assets/user/avatar/'+profile.avatar]">
     <img *ngIf="!profile.avatar" class="avatar" [src]="[avatarNotFoundWoman]">
   </div>
   <div class="card-stacked">
