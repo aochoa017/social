@@ -22,6 +22,7 @@ export class LoginFormComponent implements AfterViewInit {
   errorMsg = '';
 
   isLoginValid = false;
+  loadingForm:boolean = false;
   msg: Messages = new Messages();
   errorLoginUI = [];
 
@@ -124,10 +125,11 @@ export class LoginFormComponent implements AfterViewInit {
           // Save user info en localStorage
           localStorage.setItem("user", String(res.user.user) );
           localStorage.setItem("userId", String(res.user.id) );
-
+          this.loadingForm = false;
           this._router.navigate(['profile']);
           return true;
         } else {
+          this.loadingForm = false;
           console.log("FAIL");
           console.log(res);
           this.errorLoginUI.push( this.msg.error["LOGIN_FAIL"] );
@@ -135,8 +137,7 @@ export class LoginFormComponent implements AfterViewInit {
         }
       },
       error => {
-        // console.log("Error happened" + error);
-        console.log("llega");
+        this.loadingForm = false;
         this.errorLoginUI.push( this.msg.error["LOGIN_FAIL"] );
       },
       function() { console.log("the subscription is completed")}
@@ -145,9 +146,12 @@ export class LoginFormComponent implements AfterViewInit {
   }
 
   onSubmit() {
+    this.loadingForm = true;
     this.formLoginValidation();
     if( this.isLoginValid ) {
       this.login( this.user );
+    } else {
+      this.loadingForm = false;
     }
   }
 

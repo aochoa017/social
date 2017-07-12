@@ -27,8 +27,11 @@
       </div>
       <div class="row">
         <div class="col s12">
-          <button class="btn waves-effect waves-light" type="submit">Acceder</button>
-          <button (click)="onSignUp()" class="btn waves-effect waves-light">Registrarse</button>
+          <div *ngIf="loadingForm" class="progress">
+              <div class="indeterminate"></div>
+          </div>
+          <button *ngIf="!loadingForm" class="btn waves-effect waves-light" type="submit">Acceder</button>
+          <button *ngIf="!loadingForm" (click)="onSignUp()" class="btn waves-effect waves-light">Registrarse</button>
         </div>
       </div>
     </form>
