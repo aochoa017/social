@@ -25,6 +25,9 @@ declare var Materialize:any;
 
 export class ProfileEditComponent implements OnInit {
 
+  avatarNotFoundWoman = "assets/images/avatar-not-found-woman.png";
+  avatarNotFoundMan = "assets/images/avatar-not-found-man.png";
+
   apiUrl = environment.apiUrl;
 
   labels: Labels = new Labels();
@@ -83,7 +86,7 @@ export class ProfileEditComponent implements OnInit {
     this._serviceProfile.getProfile(id)
                      .subscribe(
                        res => {
-                         this.profile = res;
+                         this.profile = res; 
                        },
                        error =>  this.errorMsg = <any>error);
   }

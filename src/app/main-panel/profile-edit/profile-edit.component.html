@@ -116,7 +116,8 @@
           <div class="photo-author">
             <a (click)="openModal()">
               <span class="avatarHover">
-                <img class="avatar" [src]="[apiUrl+'/api/assets/user/avatar/'+profile.avatar]">
+                <img *ngIf="profile.avatar" class="avatar" [src]="[profile.avatar]">
+                <img *ngIf="!profile.avatar" class="avatar" [src]="[avatarNotFoundWoman]">
               </span>
             </a>
             <h2 class="title">

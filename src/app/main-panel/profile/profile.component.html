@@ -7,7 +7,10 @@
         </div>
         <div class="content">
           <div class="photo-author">
-            <a href="#!user"><img class="avatar" [src]="[apiUrl+'/api/assets/user/avatar/'+profile.avatar]"></a>
+            <a href="#!user">
+              <img *ngIf="profile.avatar" class="avatar" [src]="[profile.avatar]">
+              <img *ngIf="!profile.avatar" class="avatar" [src]="[avatarNotFoundWoman]">
+            </a>
             <h2 class="title">
               {{profile.name}} {{profile.surname}}
               <small>{{profile.user}}</small>

@@ -14,6 +14,9 @@ import { ProfileService } from '../../services/profile.service';
 })
 export class ProfileComponent implements OnInit {
 
+  avatarNotFoundWoman = "assets/images/avatar-not-found-woman.png";
+  avatarNotFoundMan = "assets/images/avatar-not-found-man.png";
+
   apiUrl = environment.apiUrl;
 
   labels: Labels = new Labels();

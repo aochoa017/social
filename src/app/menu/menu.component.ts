@@ -13,6 +13,9 @@ declare var jQuery: any;
 })
 export class MenuComponent implements OnInit {
 
+  avatarNotFoundWoman = "assets/images/avatar-not-found-woman.png";
+  avatarNotFoundMan = "assets/images/avatar-not-found-man.png";
+
   apiUrl = environment.apiUrl;
 
   myUserId: String;

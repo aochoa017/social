@@ -9,7 +9,10 @@
           <li>
             <div class="userView">
               <div class="photo">
-                <a [routerLink]="menu.profile"><img class="" [src]="[apiUrl+'/api/assets/user/avatar/'+profile.avatar]"></a>
+                <a [routerLink]="menu.profile">
+                  <img *ngIf="profile.avatar" class="" [src]="[profile.avatar]">
+                  <img *ngIf="!profile.avatar" class="" [src]="[avatarNotFoundWoman]">
+                </a>
               </div>
               <div class="info">
                 <ul class="collapsible" data-collapsible="accordion">
