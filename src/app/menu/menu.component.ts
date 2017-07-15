@@ -22,6 +22,7 @@ export class MenuComponent implements OnInit {
   myUser: String;
   myUserName: String;
   myUserSurname: String;
+  myUserAvatar: String;
 
   isCollapsibleOpen = false;
 
@@ -42,7 +43,8 @@ export class MenuComponent implements OnInit {
     this.myUser = localStorage.getItem("user");
     this.myUserName = localStorage.getItem("userName");
     this.myUserSurname = localStorage.getItem("userSurname");
-    this.getProfile(this.myUserId);
+    this.myUserAvatar = localStorage.getItem("userAvatar");
+    // this.getProfile(this.myUserId);
 
   }
 

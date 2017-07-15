@@ -10,15 +10,15 @@
             <div class="userView">
               <div class="photo">
                 <a [routerLink]="menu.profile">
-                  <img *ngIf="profile.avatar" class="" [src]="[profile.avatar]">
-                  <img *ngIf="!profile.avatar" class="" [src]="[avatarNotFoundWoman]">
+                  <img *ngIf="myUserAvatar" class="" [src]="[myUserAvatar]">
+                  <img *ngIf="!myUserAvatar" class="" [src]="[avatarNotFoundWoman]">
                 </a>
               </div>
               <div class="info">
                 <ul class="collapsible" data-collapsible="accordion">
                   <li>
                     <div class="collapsible-header" (click)="onClickCollapsible($event)">
-                      <div class="title">{{profile.name}} {{profile.surname}}</div>
+                      <div class="title">{{myUserName}} {{myUserSurname}}</div>
                       <i class="material-icons rotate">arrow_drop_down</i>
                     </div>
                     <div class="collapsible-body">

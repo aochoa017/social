@@ -125,6 +125,9 @@ export class LoginFormComponent implements AfterViewInit {
           // Save user info en localStorage
           localStorage.setItem("user", String(res.user.user) );
           localStorage.setItem("userId", String(res.user.id) );
+          localStorage.setItem("userName", String(res.user.name) );
+          localStorage.setItem("userSurname", String(res.user.surname) );
+          localStorage.setItem("userAvatar", String(res.user.avatar) );
           this.loadingForm = false;
           this._router.navigate(['profile']);
           return true;
