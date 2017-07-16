@@ -182,4 +182,46 @@ export class LoginFormComponent implements AfterViewInit {
     }
   }
 
+  private isSignUpValid:boolean = false;
+  public errorSignUpUI = [];
+  public newUser = {
+    'user': "",
+    'email': ""
+  };
+  onSignUpSubmit() {
+    console.log("Registro init");
+    console.log(this.newUser);
+    // this.loadingForm = true;
+    this.formSignUpValidation();
+    if( this.isSignUpValid ) {
+      // this.login( this.user );
+    } else {
+      this.isSignUpValid = false;
+    }
+  }
+
+  formSignUpValidation(){
+    this.errorSignUpUI = [];
+    var errorUser = true;
+    var errorEmail = true;
+    switch (this.newUser.user){
+      case "":
+        this.errorSignUpUI.push( this.msg.error["USER_REQUIRED"] );
+        break;
+      default:
+        errorUser = false;
+    }
+    switch (this.newUser.email){
+      case "":
+        this.errorSignUpUI.push( this.msg.error["EMAIL_REQUIRED"] );
+        break;
+      default:
+        errorEmail = false;
+    }
+
+    if( !errorUser && !errorEmail ) {
+      this.isSignUpValid = true;
+    }
+  }
+
 }

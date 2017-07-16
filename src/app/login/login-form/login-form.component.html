@@ -25,6 +25,7 @@
           <label for="password">Contraseña</label>
         </div>
       </div>
+
       <div class="row">
         <div class="col s12">
           <div *ngIf="loadingForm" class="progress">
@@ -36,9 +37,38 @@
       </div>
     </form>
     <div *ngIf="this.isSignUpShow" class="">
-      <button id="google-login-button" (click)="googleAuthenticate()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud</i>Login Google</button>
-      <button class="btn btn-danger" (click)="logout()">Logout</button>
-      <button (click)="onSignIn()" class="btn waves-effect waves-light">Ya tengo cuenta</button>
+      <div *ngIf="errorSignUpUI.length > 0" class="card-panel red darken-3">
+        <ul>
+          <li *ngFor="let error of errorSignUpUI">
+            <i class="material-icons">highlight_off</i> {{error}}
+          </li>
+        </ul>
+      </div>
+      <form (ngSubmit)="onSignUpSubmit()" #signUpForm="ngForm">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="newUser" name="user" type="text" class="" [(ngModel)]="newUser.user">
+            <label for="newUser">Usuario</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="newEmail" name="email" type="email" class="" [(ngModel)]="newUser.email">
+            <label for="newEmail">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <div *ngIf="loadingForm" class="progress">
+                <div class="indeterminate"></div>
+            </div>
+            <button *ngIf="!loadingForm" class="btn waves-effect waves-light" type="submit">Registrarme</button>
+            <button *ngIf="!loadingForm" (click)="onSignIn()" class="btn waves-effect waves-light">Ya tengo cuenta</button>
+          </div>
+        </div>
+      </form>
+      <!-- <button id="google-login-button" (click)="googleAuthenticate()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud</i>Login Google</button>
+      <button class="btn btn-danger" (click)="logout()">Logout</button> -->
     </div>
   </div>
 </div>
