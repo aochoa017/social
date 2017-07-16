@@ -31,6 +31,7 @@ import { DashboardComponent } from './main-panel/dashboard/dashboard.component';
 import { CardUserComponent } from './card-user/card-user.component';
 import { ContactsComponent } from './main-panel/contacts/contacts.component';
 import { AlertModalComponent } from './modals/alert-modal/alert-modal.component';
+import { SearchNavComponent } from './main-panel/nav/search-nav/search-nav.component';
 
 const appRoutes: Routes = [
   {
@@ -117,7 +118,8 @@ const appRoutes: Routes = [
     ContactsComponent,
     EmailValidator,
     PasswordValidator,
-    AlertModalComponent
+    AlertModalComponent,
+    SearchNavComponent
   ],
   imports: [
     BrowserModule,
