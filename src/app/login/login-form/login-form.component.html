@@ -70,5 +70,14 @@
       <!-- <button id="google-login-button" (click)="googleAuthenticate()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud</i>Login Google</button>
       <button class="btn btn-danger" (click)="logout()">Logout</button> -->
     </div>
+    <div *ngIf="this.isRegisterShow" class="">
+      <div *ngIf="msgRegisterShow.length > 0" class="card-panel green darken-3">
+        <ul>
+          <li *ngFor="let msg of msgRegisterShow">
+            <i class="material-icons">check</i> {{msg}}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

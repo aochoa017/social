@@ -186,7 +186,9 @@ export class LoginFormComponent implements AfterViewInit {
   }
 
   private isSignUpValid:boolean = false;
+  private isRegisterShow:boolean = false;
   public errorSignUpUI = [];
+  public msgRegisterShow = [];
   public newUser = {
     'user': "",
     'email': ""
@@ -194,17 +196,19 @@ export class LoginFormComponent implements AfterViewInit {
   onSignUpSubmit() {
     console.log("Registro init");
     console.log(this.newUser);
-    // this.loadingForm = true;
+    this.loadingForm = true;
     this.formSignUpValidation();
     if( this.isSignUpValid ) {
       this.postNewUser( this.newUser );
     } else {
       this.isSignUpValid = false;
+      this.loadingForm = false;
     }
   }
 
   formSignUpValidation(){
     this.errorSignUpUI = [];
+    this.msgRegisterShow = [];
     var errorUser = true;
     var errorEmail = true;
 
@@ -241,21 +245,25 @@ export class LoginFormComponent implements AfterViewInit {
       res => {
         console.log(res);
         this.errorSignUpUI = [];
+        this.msgRegisterShow = [];
         if ( res.success ){
-
+          this.loadingForm = false;
+          this.isSignUpShow = false;
+          this.isRegisterShow = true;
+          this.msgRegisterShow.push(res.message);
           return true;
 
         } else {
-
+          this.loadingForm = false;
           this.isSignUpValid = false;
           console.log("postNewUser FAIL");
           console.log(res);
           this.errorSignUpUI.push( this.msg.error["LOGIN_FAIL"] );
           return false;
-
         }
       },
       error => {
+        this.loadingForm = false;
         this.isSignUpValid = false;
         this.errorSignUpUI.push( error.content );
       },
