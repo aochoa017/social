@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import {Router} from '@angular/router';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
@@ -8,14 +8,16 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Injectable()
 export class LoginService {
 
   private apiUrl = environment.apiUrl + '/api/login';  // URL to web API
   private apiRegisterUrl = environment.apiUrl + '/api/user/new';  // URL to web API
+  private actualUrl:string;
 
-  constructor( private _router: Router, private http: Http ){}
+  constructor( @Inject(DOCUMENT) private document: any, private _router: Router, private http: Http ){}
 
   postLogin(body: Object): Observable<any> {
     let data = JSON.stringify(body); // Stringify payload
@@ -42,7 +44,17 @@ export class LoginService {
   checkCredentials(){
     var access_token = Cookie.get('access_token');
     if (access_token === null){
+      this.actualUrl = this.document.location.href;
+      console.log(this.actualUrl);
+      let path = this.actualUrl.split("#");
+      let pathParameters = path[path.length-1].split("/");
+
+      if(pathParameters.indexOf('register') > -1) {
+        this._router.navigate(['register']);
+      } else {
+        console.log();
         this._router.navigate(['login']);
+      }
     } else if ( this._router.url == 'login' ){
       this._router.navigate(['dashboard']);
     }
