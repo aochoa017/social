@@ -33,11 +33,34 @@ import { CardUserComponent } from './card-user/card-user.component';
 import { ContactsComponent } from './main-panel/contacts/contacts.component';
 import { AlertModalComponent } from './modals/alert-modal/alert-modal.component';
 import { SearchNavComponent } from './main-panel/nav/search-nav/search-nav.component';
+import { LoginRegisterComponent } from './login/login-register/login-register.component';
 
 const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: LoginFormComponent
+      }
+    ]
+  },
+  {
+    path: 'register',
+    component: LoginComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: LoginRegisterComponent
+      },
+      {
+        path: ':token',
+        component: LoginRegisterComponent
+      },
+    ]
   },
   { path: '',
     redirectTo: '/dashboard',
@@ -120,7 +143,8 @@ const appRoutes: Routes = [
     EmailValidator,
     PasswordValidator,
     AlertModalComponent,
-    SearchNavComponent
+    SearchNavComponent,
+    LoginRegisterComponent
   ],
   imports: [
     BrowserModule,
