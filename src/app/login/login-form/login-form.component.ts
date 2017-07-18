@@ -9,6 +9,8 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { UserService } from '../../services/user.service';
 import { LoginService } from '../../services/login.service';
 
+import { CustomValidators } from '../../validators/custom-validators';
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -40,7 +42,8 @@ export class LoginFormComponent implements AfterViewInit {
     private _serviceUser:UserService,
     private _serviceLogin:LoginService,
     // private _googleAuth: AuthService,
-    private _zone: NgZone
+    private _zone: NgZone,
+    private customValidators:CustomValidators
   ) {
     this.onSignIn();
   }
@@ -194,7 +197,7 @@ export class LoginFormComponent implements AfterViewInit {
     // this.loadingForm = true;
     this.formSignUpValidation();
     if( this.isSignUpValid ) {
-      // this.login( this.user );
+      this.postNewUser( this.newUser );
     } else {
       this.isSignUpValid = false;
     }
@@ -204,24 +207,61 @@ export class LoginFormComponent implements AfterViewInit {
     this.errorSignUpUI = [];
     var errorUser = true;
     var errorEmail = true;
-    switch (this.newUser.user){
-      case "":
-        this.errorSignUpUI.push( this.msg.error["USER_REQUIRED"] );
-        break;
-      default:
+
+    if(this.newUser.user == "") {
+      this.errorSignUpUI.push( this.msg.error["USER_REQUIRED"] );
+    } else {
+      if(this.customValidators.noSpaceValidator(this.newUser.user)) {
+        this.errorSignUpUI.push( this.msg.error["USER_NO_WHITE_SPACE"] );
+      }
+      // if(this.customValidators.noCapitalLettersValidator(this.newUser.user)){
+      //   this.errorSignUpUI.push( this.msg.error["USER_NO_CAPITAL_LETTERS"] );
+      // }
+      if(this.customValidators.noSpecialCharactersValidator(this.newUser.user)) {
+        this.errorSignUpUI.push( this.msg.error["USER_NO_SPECIAL_CHARACTERS"] );
+      }
+      else {
         errorUser = false;
+      }
     }
-    switch (this.newUser.email){
-      case "":
-        this.errorSignUpUI.push( this.msg.error["EMAIL_REQUIRED"] );
-        break;
-      default:
-        errorEmail = false;
+
+    if(this.newUser.email == "") {
+      this.errorSignUpUI.push( this.msg.error["EMAIL_REQUIRED"] );
+    } else {
+      errorEmail = false;
     }
 
     if( !errorUser && !errorEmail ) {
       this.isSignUpValid = true;
     }
+  }
+
+  postNewUser(user){
+    var isNewUser = this._serviceLogin.postNewUser(user).subscribe(
+      res => {
+        console.log(res);
+        this.errorSignUpUI = [];
+        if ( res.success ){
+
+          return true;
+
+        } else {
+
+          this.isSignUpValid = false;
+          console.log("postNewUser FAIL");
+          console.log(res);
+          this.errorSignUpUI.push( this.msg.error["LOGIN_FAIL"] );
+          return false;
+
+        }
+      },
+      error => {
+        this.isSignUpValid = false;
+        this.errorSignUpUI.push( error.content );
+      },
+      function() { console.log("the subscription is completed")}
+    );
+    return isNewUser;
   }
 
 }

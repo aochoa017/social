@@ -5,6 +5,9 @@ export class Messages {
     'PASSWORD_INVALID': 'La contraseña no es válida',
 
     'USER_REQUIRED': 'El usuario es obligatorio',
+    'USER_NO_WHITE_SPACE': 'El usuario no puede contener espacios',
+    'USER_NO_CAPITAL_LETTERS': 'El usuario no puede contener mayúsculas',
+    'USER_NO_SPECIAL_CHARACTERS': 'El usuario no puede contener caracteres especiales',
     'PASSWORD_REQUIRED': 'La contraseña es obligatoria',
     'EMAIL_REQUIRED': 'El email es obligatorio',
 

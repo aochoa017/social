@@ -21,6 +21,7 @@ import { ContactService } from './services/contact.service';
 import { LoginService } from './services/login.service';
 import { ProfileService } from './services/profile.service';
 import { UserService } from './services/user.service';
+import { CustomValidators } from './validators/custom-validators';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { LoginNavComponent } from './login/login-nav/login-nav.component';
@@ -129,7 +130,7 @@ const appRoutes: Routes = [
     NgUploaderModule,
     MaterializeModule
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},ProfileService,UserService,LoginService,ContactService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},ProfileService,UserService,LoginService,ContactService,CustomValidators],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

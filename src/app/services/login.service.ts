@@ -13,6 +13,7 @@ import 'rxjs/add/observable/throw';
 export class LoginService {
 
   private apiUrl = environment.apiUrl + '/api/login';  // URL to web API
+  private apiRegisterUrl = environment.apiUrl + '/api/user/new';  // URL to web API
 
   constructor( private _router: Router, private http: Http ){}
 
@@ -23,6 +24,17 @@ export class LoginService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.apiUrl, data, options)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  postNewUser(body: Object): Observable<any> {
+    let data = JSON.stringify(body); // Stringify payload
+    console.log(body);
+    console.log(data);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.apiRegisterUrl, data, options)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
